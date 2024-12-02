@@ -1,1 +1,3 @@
-class Item {}
+class Item {
+    imatge;
+}

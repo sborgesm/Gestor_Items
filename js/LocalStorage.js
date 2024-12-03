@@ -23,6 +23,7 @@ class LocalStorage {
 
   /**
    * Mostra els items guardats en el LocalStorage del navegador.
+   * @return {Array} array d'items.
    */
   mostrarItems() {
     const items = JSON.parse(localStorage.getItem("items"));

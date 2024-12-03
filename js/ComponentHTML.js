@@ -1,21 +1,23 @@
 class ComponentHTML {
-    constructor() {}
+  constructor() {
+    this.html = "";
+  }
 
-    render() {
-        return "";
-    }
+  render() {
+    return this.html;
+  }
 
-    update(element, contenido) {
-        if (element.innerHTML !== undefined) {
-            element.innerHTML = contenido;
-        }
+  update(element, contenido) {
+    if (element.innerHTML !== undefined) {
+      element.innerHTML = contenido;
     }
+  }
 
-    append(element, contenido) {
-        if (element.innerHTML !== undefined) {
-            element.innerHTML += contenido;
-        }
+  append(element, contenido) {
+    if (element.innerHTML !== undefined) {
+      element.innerHTML += contenido;
     }
+  }
 }
 
 /* export { ComponentHTML }; */

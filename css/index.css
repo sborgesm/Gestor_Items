@@ -55,24 +55,3 @@ input {
     cursor: pointer;
     border-radius: 10px;
 }
-
-.gran{
-    display: flex;
-    justify-content:space-around; 
-    align-items: center; 
-}
-
-.opcions{
-    background-color: #f0f0f0;
-    width: 30%;
-    float: left;
-    text-align: center;
-    border: 1px solid #ccc;
-	border-radius: 10px;
-    padding-bottom: 10px;
-    color: #4CAF50;
-}
-
-.opcions label{
-    font-size: larger;
-}

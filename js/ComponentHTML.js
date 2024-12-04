@@ -2,22 +2,27 @@ class ComponentHTML {
   constructor() {
     this.html = "";
   }
-
+  /**
+   * Funcio per renderitzar el html
+   * @returns {string} Retorna el html
+   */
   render() {
     return this.html;
   }
 
-  update(element, contenido) {
-    if (element.innerHTML !== undefined) {
-      element.innerHTML = contenido;
-    }
+  /**
+   * Funcio per assignar l'element html
+   * @param {string} element
+   */
+  update(element) {
+    element.innerHTML = this.render();
   }
 
-  append(element, contenido) {
-    if (element.innerHTML !== undefined) {
-      element.innerHTML += contenido;
-    }
+  /**
+   * Funcio per afegir l'element html
+   * @param {string} element
+   */
+  append(element) {
+    element.innerHTML += this.render();
   }
 }
-
-/* export { ComponentHTML }; */

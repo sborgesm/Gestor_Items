@@ -22,7 +22,7 @@ class LocalStorage {
   }
 
   /**
-   * Mostra els items guardats en el LocalStorage del navegador.
+   * Carrega els items guardats en el LocalStorage del navegador.
    * @return {Array} array d'items.
    */
   carregarItems() {

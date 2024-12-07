@@ -1,8 +1,16 @@
 class Simple extends Items {
-    constructor(nom, descripció, data_creació, data_modificació) {
-        super(nom, descripció, data_creació, data_modificació);
+    constructor(nom, descripcio, data_creacio=new Date(), data_modificacio) {
+        super(nom, descripcio, data_creacio, data_modificacio);
+        this.data_creacio = this.formatejarData(this.data_creacio);
     }
 
+    formatejarData(date) { 
+        let dia = String(date.getDate()).padStart(2, '0'); 
+        let mes = String(date.getMonth() + 1).padStart(2, '0'); // Els mesos comencen per 0
+        let any = date.getFullYear(); 
+        return `${dia}-${mes}-${any}`; // Format DD-MM-YYYY 
+    }
+    
     afegirNom() {
         document.getElementById('dadesaOmplir').innerHTML = `
             <label for="nom">Nom:</label>
@@ -14,13 +22,6 @@ class Simple extends Items {
         document.getElementById('dadesaOmplir').innerHTML += `
             <label for="descripcio">Descripcio:</label>
             <input type="text" id="descripcio" name="descripcio">
-        `;
-    }
-
-    afegirDataCreacio() {
-        document.getElementById('dadesaOmplir').innerHTML += `
-            <label for="data_creacio">Data creacio:</label>
-            <input type="date" id="data_creacio" name="data_creacio">
         `;
     }
 

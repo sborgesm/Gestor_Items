@@ -18,11 +18,4 @@ class ComponentHTML {
     element.innerHTML = this.render();
   }
 
-  /**
-   * Funcio per afegir l'element html
-   * @param {string} element
-   */
-  append(element) {
-    element.innerHTML += this.render();
-  }
 }

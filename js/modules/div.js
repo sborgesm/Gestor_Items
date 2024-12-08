@@ -1,42 +1,51 @@
-import { ComponentHTML } from "./ComponentHTML.js";
-import { Titol } from "./titol.js";
-import { Boto } from "./boto.js";
+import { ComponentHTML } from './ComponentHTML.js';
+import { Titol } from './titol.js';
+import { FormComponent } from './form.js';
 
 class DivComponent extends ComponentHTML {
-    constructor(content = '', nomClass = '') {
-        let divHtml = `<div class="${nomClass}">${content}</div>`;
-        super(divHtml);
-        this.Titol = new Titol();
-        this.Boto = new Boto();
+    constructor(html, className = '') {
+        super(html);
+        this.className = className;
+        this.children = []; // Almacena los divs hijos y otros componentes
     }
 
-    // Métode per establir el contingut de text del div
-    afegirContingut(content, nomClass = '') {
-        this.html = `<div class="${nomClass}">${content}</div>`;
+    // Mètode render: retorna l'element HTML de tipus div com a string
+    render() {
+        const childrenHTML = this.children.map(child => child.render()).join('');
+        return `<div class="${this.className}">${this.html}${childrenHTML}</div>`;
     }
 
-    // Métode per afegir un div intern
-    afegirDivIntern(content = '', nomClassIntern = '') {
-        // Tancar el div extern abans d'afegir un intern
-        this.html = this.html.replace('</div>', ''); // Eliminar tancament temporal
-        this.html += `<div class="${nomClassIntern}">${content}</div></div>`; // Afegir div intern i tancar div extern
+    // Mètode update: assigna l'innerHTML de l'element donat a l'HTML generat
+    update(element) {
+        element.innerHTML = this.render();
     }
 
-    // Métode per afegir un títol dintre del div intern
-    afegirTitolADivIntern(contingut, tipus = '', nomClassIntern = '') {
-        this.Titol.canviarTipus(tipus);
-        // Actualitzar el contingut del títol
-        this.Titol.canviarContingut(contingut);
-        // Insertar el títol dintre del div intern
-        this.html = this.html.replace(`<div class="${nomClassIntern}">`, `<div class="${nomClassIntern}">${this.Titol.html}`);
+    // Mètode append: afegeix l'HTML generat a l'innerHTML de l'element donat
+    append(element) {
+        element.innerHTML += this.render();
     }
 
-    // Métode per afegir un botó dintre del div intern
-    afegirBotoADivIntern(contingut, url, nomClassIntern = '') {
-        this.Boto.canviarContingut(contingut);
-        this.Boto.canviarUrl(url);
-        // Inserir el botó dintre del div intern
-        this.html = this.html.replace(`<div class="${nomClassIntern}">`, `<div class="${nomClassIntern}">${this.Boto.html}`);
+    // Mètode setClass: canvia la classe del div
+    setClass(newClass) {
+        this.className = newClass;
+    }
+
+    // Mètode addChild: afegeix un component fill
+    addChild(childComponent) {
+        this.children.push(childComponent);
+    }
+
+    // Mètode addTitol: afegeix un títol com a fill
+    addTitol(contingut, tipus) {
+        const titol = new Titol(contingut, tipus);
+        this.addChild(titol);
+    }
+
+    // Mètode addForm: afegeix un formulari com a fill
+    addForm(action, method) {
+        const form = new FormComponent(action, method);
+        this.addChild(form);
+        return form; // Retorna el formulari per afegir camps i botons
     }
 }
 

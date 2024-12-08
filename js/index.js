@@ -1,9 +1,14 @@
+import { Taula } from "./classes/taula.js";
+import { Input } from "./classes/input.js";
+import { Boto } from "./classes/boto.js";
+import { Titol } from "./classes/titol.js";
+
 // Crear una instancia de Titol 
 let titolEntrada = new Titol('h1');  
 titolEntrada.canviarContingut("Taula d'items"); 
 
 // Crear una instància de Boto 
-let botoAfegir = new Boto("Afegir Item", 'boton', function() { window.location.href = '../views/creacioItem.html'; });
+let botoAfegir = new Boto("Afegir Item", './views/creacioItem.html');
 let botoCerca = new Boto("Cerca");
 
 // Crear una instància de Input 
@@ -16,9 +21,9 @@ let taula = new Taula(capcaleres, []);
 // Esperar que el DOM estigui llest i renderitzar
 document.addEventListener("DOMContentLoaded", () => {
     let contenedor = document.getElementById("dades");
-    contenedor.innerHTML = botoAfegir.render();
-    contenedor.innerHTML += inputCerca.render();
-    contenedor.innerHTML += botoCerca.render();
-    contenedor.innerHTML += titolEntrada.render();
-    contenedor.innerHTML += taula.render();
+    botoAfegir.append(contenedor);
+    inputCerca.append(contenedor);
+    botoCerca.append(contenedor);
+    titolEntrada.append(contenedor);
+    taula.append(contenedor);
 });

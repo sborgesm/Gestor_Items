@@ -1,33 +1,14 @@
-
-// Definició de la classe Botó 
+import { ComponentHTML } from "./ComponentHTML.js";
 class Boto extends ComponentHTML { 
-    constructor(text, estil = '', onClickFunc=null) {
-        super();
-        this.text = text; this.estil = estil; 
-        this.onClickFunc = onClickFunc; 
-        this.html = `<button class="${estil}">${text}</button>`;
-    }  
-
-    // Mètode per canviar el text del botó 
-    canviarText(nouText) { 
-        this.text = nouText; 
-        this.html = `<button class="${this.estil}">${this.text}</button>`; 
-    } 
-    // Mètode per canviar l'estil del botó 
-    canviarEstil(nouEstil) { 
-        this.estil = nouEstil; 
-        this.html = `<button class="${this.estil}">${this.text}</button>`; 
+    constructor(html, url) { 
+        super(html); 
+        this.url = url; 
     }
     
-    // Mètode per renderitzar el botó amb funcionalitat 
+    // Mètode render: retorna el botó HTML com a string, incloent l'event onclick per redirigir a una altra pàgina 
     render() { 
-        const div = document.createElement('div'); 
-        div.innerHTML = this.html; 
-        const button = div.firstChild; 
-        
-        if (this.onClickFunc) { 
-            button.addEventListener('click', this.onClickFunc); 
-        } 
-        return div.innerHTML; 
+        return `<button onclick="window.location.href='${this.url}'">${this.html}</button>`; 
     }
 }
+
+export { Boto };

@@ -1,4 +1,4 @@
-
+import { ComponentHTML } from './ComponentHTML.js';
 class Titol extends ComponentHTML {
     constructor(contingut, tipus = 'h1') {
         // Crea l'element HTML del títol 
@@ -17,3 +17,5 @@ class Titol extends ComponentHTML {
         this.html = `<${this.tipus}>${this.contingut}</${this.tipus}>`;
     }
 }
+
+export { Titol };

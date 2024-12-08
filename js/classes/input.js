@@ -1,4 +1,4 @@
-
+import { ComponentHTML } from "./ComponentHTML.js";
 // Definició de la classe Input 
 class Input extends ComponentHTML { 
     constructor(tipus = 'text', valor = '', placeholder = '') { 
@@ -26,3 +26,5 @@ class Input extends ComponentHTML {
         this.html = `<input type="${this.tipus}" value="${this.valor}" placeholder="${this.placeholder}">`;
         }
     }
+
+    export { Input };

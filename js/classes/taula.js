@@ -1,4 +1,4 @@
-
+import { ComponentHTML } from "./ComponentHTML.js";
 class Taula extends ComponentHTML {
     constructor(capcaleres, dada) {
         let html = Taula.createTableHTML(capcaleres, dada);
@@ -42,3 +42,5 @@ class Taula extends ComponentHTML {
         this.html = Taula.createTableHTML(this.headers, this.data);
     }
 }
+
+export { Taula };

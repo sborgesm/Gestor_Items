@@ -1,21 +1,22 @@
 class ComponentHTML {
-  constructor() {
-    this.html = "";
+  constructor(html) {
+      this.html = html;
   }
-  /**
-   * Funcio per renderitzar el html
-   * @returns {string} Retorna el html
-   */
+
+  // Mètode render: retorna l'element HTML com a string
   render() {
-    return this.html;
+      return this.html;
   }
 
-  /**
-   * Funcio per assignar l'element html
-   * @param {string} element
-   */
+  // Mètode update: assigna l'innerHTML de l'element donat a l'HTML generat
   update(element) {
-    element.innerHTML = this.render();
+      element.innerHTML = this.render();
   }
 
+  // Mètode append: afegeix l'HTML generat a l'innerHTML de l'element donat
+  append(element) {
+      element.innerHTML += this.render();
+  }
 }
+
+export { ComponentHTML };

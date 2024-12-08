@@ -5,40 +5,40 @@ class FormComponent extends ComponentHTML {
   constructor(action = "#", method = "GET") {
     // Crida al constructor pare amb l'HTML inicial d'un formulari buit
     super(`<form action="${action}" method="${method}"></form>`);
-    this.fields = []; // Array per guardar els camps del formulari
+    this.camps = []; // Array per guardar els camps del formulari
   }
 
   // Afegeix un nou camp al formulari
-  addField(type, name, placeholder = "", value = "", options = {}) {
-    let fieldHTML = '';
+  afegirCamp(type, name, placeholder = "", value = "", options = {}) {
+    let campHTML = '';
     if (type === 'select') {
       // Generar select amb opcions
-      fieldHTML = `<select name="${name}">`;
-      for (const option of options) {
-        fieldHTML += `<option value="${option.value}" ${
+      campHTML = `<select name="${name}">`;
+      for (let option of options) {
+        campHTML += `<option value="${option.value}" ${
           option.selected ? "selected" : ""
         }>${option.label}</option>`;
       }
-      fieldHTML += `</select>`;
+      campHTML += `</select>`;
     } else {
       // Generar altres tipus d'inputs
-      fieldHTML = `<input type="${type}" name="${name}" placeholder="${placeholder}" value="${value}" />`;
+      campHTML = `<input type="${type}" name="${name}" placeholder="${placeholder}" value="${value}" />`;
     }
-    this.fields.push(fieldHTML); // Afegir el camp a l'array de camps
+    this.camps.push(campHTML); // Afegir el camp a l'array de camps
     this.updateHTML(); // Actualitzar l'HTML del formulari
   }
 
   // Afegeix un botó al formulari
-  addButton(label, type = "submit") {
-    const buttonHTML = `<button type="${type}">${label}</button>`;
-    this.fields.push(buttonHTML);
+  afegirBoto(label, type = "submit") {
+    let botoHTML = `<button type="${type}">${label}</button>`;
+    this.camps.push(botoHTML);
     this.updateHTML(); // Actualitzar l'HTML del formulari
   }
 
   // Actualitzar l'HTML del formulari amb tots els camps
   updateHTML() {
     this.html = `<form action="${this.getAction()}" method="${this.getMethod()}">
-        ${this.fields.join("\n")}
+        ${this.camps.join("\n")}
     </form>`;
   }
 

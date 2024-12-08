@@ -3,48 +3,38 @@ import { Titol } from './titol.js';
 import { FormComponent } from './form.js';
 
 class DivComponent extends ComponentHTML {
-    constructor(html, className = '') {
+    constructor(html, classNom = '') {
         super(html);
-        this.className = className;
-        this.children = []; // Almacena los divs hijos y otros componentes
+        this.classNom = classNom;
+        this.fills = []; // Guarda els divs fills i altres components
     }
 
     // Mètode render: retorna l'element HTML de tipus div com a string
     render() {
-        const childrenHTML = this.children.map(child => child.render()).join('');
-        return `<div class="${this.className}">${this.html}${childrenHTML}</div>`;
+        let fillsHTML = this.fills.map(fill => fill.render()).join('');
+        return `<div class="${this.classNom}">${this.html}${fillsHTML}</div>`;
     }
 
-    // Mètode update: assigna l'innerHTML de l'element donat a l'HTML generat
-    update(element) {
-        element.innerHTML = this.render();
+    // Mètode canviaClass: canvia la classe del div
+    canviaClass(novaClass) {
+        this.classNom = novaClass;
     }
 
-    // Mètode append: afegeix l'HTML generat a l'innerHTML de l'element donat
-    append(element) {
-        element.innerHTML += this.render();
+    // Mètode afegirFill: afegeix un component fill
+    afegirFill(fillComponent) {
+        this.fills.push(fillComponent);
     }
 
-    // Mètode setClass: canvia la classe del div
-    setClass(newClass) {
-        this.className = newClass;
+    // Mètode afegirTitol: afegeix un títol com a fill
+    afegirTitol(contingut, tipus) {
+        let titol = new Titol(contingut, tipus);
+        this.afegirFill(titol);
     }
 
-    // Mètode addChild: afegeix un component fill
-    addChild(childComponent) {
-        this.children.push(childComponent);
-    }
-
-    // Mètode addTitol: afegeix un títol com a fill
-    addTitol(contingut, tipus) {
-        const titol = new Titol(contingut, tipus);
-        this.addChild(titol);
-    }
-
-    // Mètode addForm: afegeix un formulari com a fill
-    addForm(action, method) {
-        const form = new FormComponent(action, method);
-        this.addChild(form);
+    // Mètode afegirForm: afegeix un formulari com a fill
+    afegirForm(action, method) {
+        let form = new FormComponent(action, method);
+        this.afegirFill(form);
         return form; // Retorna el formulari per afegir camps i botons
     }
 }

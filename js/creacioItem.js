@@ -11,13 +11,13 @@ titolEntrada.canviarContingut("Creacio d'items");
 let divGran = new DivComponent("", "gran");
 let divOpcions = new DivComponent("", "opcions");
 let divOpcions2 = new DivComponent("", "opcions");
-let formulari = divOpcions.addForm('#', '');
-divGran.addChild(divOpcions);
-divGran.addChild(divOpcions2);
-divOpcions.addTitol("Quin tipus d'item vols crear?", "h2");
-formulari.addField('radio', 'simple', 'Introdueix el nom d\'item');
-formulari.addButton('Tria');
-divOpcions2.addTitol("Omple les dades", "h2");
+let formulari = divOpcions.afegirForm('#', '');
+divGran.afegirFill(divOpcions);
+divGran.afegirFill(divOpcions2);
+divOpcions.afegirTitol("Quin tipus d'item vols crear?", "h2");
+formulari.afegirCamp('radio', 'simple', 'Introdueix el nom d\'item');
+formulari.afegirBoto('Tria');
+divOpcions2.afegirTitol("Omple les dades", "h2");
 // Esperar que el DOM estigui llest i renderitzar
 document.addEventListener("DOMContentLoaded", () => {
     let contenedor = document.getElementById("dades");

@@ -1,7 +1,7 @@
-import { Taula } from "./classes/taula.js";
-import { Input } from "./classes/input.js";
-import { Boto } from "./classes/boto.js";
-import { Titol } from "./classes/titol.js";
+import { Taula } from "./modules/taula.js";
+import { Input } from "./modules/input.js";
+import { Boto } from "./modules/boto.js";
+import { Titol } from "./modules/titol.js";
 
 // Crear una instancia de Titol 
 let titolEntrada = new Titol('h1');  

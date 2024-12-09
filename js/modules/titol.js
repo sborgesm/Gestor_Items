@@ -1,3 +1,4 @@
+import { ComponentHTML } from "./ComponentHTML.js";
 /**
  * Classe per representar un títol. El títol es un ComponentHTML especialitzat
  * que permet canviar el contingut i el tipus de títol.

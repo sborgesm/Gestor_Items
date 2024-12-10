@@ -12,3 +12,5 @@ class SelectComponent extends ComponentHTML {
         return `<select name="${this.name}" id="${this.name}">${this.html}</select>`;
     }
 }
+
+export { SelectComponent };

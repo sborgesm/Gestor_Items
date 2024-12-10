@@ -1,7 +1,7 @@
 import { Taula } from "./modules/taula.js";
 import { Input } from "./modules/input.js";
 import { Boto } from "./modules/boto.js";
-import { Titol } from "./modules/titol.js";
+import { Titol } from "./modules/Titol.js";
 import { DivComponent } from "./modules/div.js";
 import { ComponentHTML } from "./modules/ComponentHTML.js";
 import { Targeta } from "./modules/targeta.js";
@@ -14,8 +14,8 @@ titolEntrada.canviarContingut("Creacio d'items");
 let nouDiv = new DivComponent('', 'gran');
 
 // Crear instancia de Targeta
-let targeta1 = new Targeta('opcions');
-let targeta2 = new Targeta('opcions');
+let targeta1 = new Targeta('opcions', 'Tria', 'Quin tipus d\'item vols crear?');
+let targeta2 = new Targeta('opcions', 'Crea', 'Omple les dades');
 
 // Añadir la targeta como hijo del div principal
 nouDiv.afegirFill(targeta1);

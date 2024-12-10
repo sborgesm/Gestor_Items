@@ -1,5 +1,4 @@
-
-import { ComponentHTML } from './ComponentHTML.js';
+import { ComponentHTML } from "./ComponentHTML.js";
 
 class FormComponent extends ComponentHTML {
   constructor(action = "#", method = "GET") {
@@ -10,8 +9,8 @@ class FormComponent extends ComponentHTML {
 
   // Afegeix un nou camp al formulari
   afegirCamp(type, name, placeholder = "", value = "", options = {}) {
-    let campHTML = '';
-    if (type === 'select') {
+    let campHTML = "";
+    if (type === "select") {
       // Generar select amb opcions
       campHTML = `<select name="${name}">`;
       for (let option of options) {
@@ -64,7 +63,7 @@ class FormComponent extends ComponentHTML {
 
   // Assignar una funció per gestionar l'esdeveniment de submissió
   onSubmit(handler) {
-    document.querySelector('form').addEventListener('submit', (event) => {
+    document.querySelector("form").addEventListener("submit", (event) => {
       event.preventDefault();
       handler(event);
     });

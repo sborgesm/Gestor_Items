@@ -9,7 +9,7 @@ class SelectComponent extends ComponentHTML {
 
     // Mètode render: retorna l'element HTML de tipus select com a string
     render() {
-        return `<select name="${this.name}" id="${this.name}">${this.html}</select>`;
+        return `<select name="${this.name}" id="${this.idNom}">${this.html}</select>`;
     }
 }
 

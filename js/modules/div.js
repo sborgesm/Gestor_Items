@@ -1,6 +1,4 @@
 import { ComponentHTML } from './ComponentHTML.js';
-import { Titol } from './titol.js';
-import { FormComponent } from './form.js';
 
 class DivComponent extends ComponentHTML {
     constructor(html, classNom = '') {
@@ -23,19 +21,6 @@ class DivComponent extends ComponentHTML {
     // Mètode afegirFill: afegeix un component fill
     afegirFill(fillComponent) {
         this.fills.push(fillComponent);
-    }
-
-    // Mètode afegirTitol: afegeix un títol com a fill
-    afegirTitol(contingut, tipus) {
-        let titol = new Titol(contingut, tipus);
-        this.afegirFill(titol);
-    }
-
-    // Mètode afegirForm: afegeix un formulari com a fill
-    afegirForm(action, method) {
-        let form = new FormComponent(action, method);
-        this.afegirFill(form);
-        return form; // Retorna el formulari per afegir camps i botons
     }
 }
 

@@ -4,7 +4,7 @@ class SelectComponent extends ComponentHTML {
     constructor(html = 'Selecciona una opcion', name, idNom = '') {
         super(html);
         this.name = name;
-        this.idNom = idNom; // Guarda els options
+        this.idNom = idNom; // Guarda els id
         this.options = []; // Guarda els options
     }
 

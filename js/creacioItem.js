@@ -15,7 +15,7 @@ titolEntrada.canviarContingut("Creacio d'items");
 let nouDiv = new DivComponent('', 'gran');
 
 // Crear instancia de Targeta
-let targeta1 = new Targeta('opcions', 'Tria', 'Quin tipus d\'item vols crear?');
+let targeta1 = new Targeta('opcions', 'Tria', 'Quin tipus d\'item vols crear?', 'select');
 let targeta2 = new Targeta('opcions', 'Crea', 'Omple les dades');
 let nouSelect = new SelectComponent('tipus', 'text', 'item');
 
@@ -32,17 +32,17 @@ document.addEventListener("DOMContentLoaded", () => {
     nouSelect.append(contenedor);
 });
 
-document.getElementById('eleccio').addEventListener('click', function () { 
-    // Obtener la opción seleccionada
-    let elementSeleccionat = document.querySelector('input[name="eleccio"]:checked'); 
-    // Obtener el texto asociado
-    let nomdeSeleccio = document.querySelector(`label[for="${elementSeleccionat.id}"]`);
+// document.getElementById('eleccio').addEventListener('click', function () { 
+//     // Obtener la opción seleccionada
+//     let elementSeleccionat = document.querySelector('input[name="eleccio"]:checked'); 
+//     // Obtener el texto asociado
+//     let nomdeSeleccio = document.querySelector(`label[for="${elementSeleccionat.id}"]`);
     
-    if (nomdeSeleccio.innerText == 'Simple') {
-        let simple = new Simple();
-        simple.afegirNom();
-        simple.afegirDescripcio();
-    } else {
-        // Lógica para otras opciones
-    }
-});
+//     if (nomdeSeleccio.innerText == 'Simple') {
+//         let simple = new Simple();
+//         simple.afegirNom();
+//         simple.afegirDescripcio();
+//     } else {
+//         // Lógica para otras opciones
+//     }
+// });

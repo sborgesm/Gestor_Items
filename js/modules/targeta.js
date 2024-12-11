@@ -9,10 +9,8 @@ class Targeta extends ComponentHTML {
         this.div = new DivComponent('', classFill);
         this.boto = new Boto(nomBoto);
         this.titol = new Titol(nomTitol, 'h2');
-    }
-
+    }    
     render() {
-        this.div.afegirFill(new DivComponent('', ''));
         this.div.afegirFill(this.titol);
         this.div.afegirFill(this.boto);
         return this.div.render();

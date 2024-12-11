@@ -18,8 +18,8 @@ class SelectComponent extends ComponentHTML {
     }
 
     // Mètode afegirFill: afegeix un component fill
-    afegirFill(optionComponent) {
-        this.options.push(optionComponent);
+    afegirFill(...optionComponent) {
+        this.options.push(...optionComponent);
     }
 }
 

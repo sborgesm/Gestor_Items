@@ -12,7 +12,8 @@ class Targeta extends ComponentHTML {
     this.titol = new Titol(nomTitol, "h2");
 
     if (element === "select") {
-      this.element = new SelectComponent("");
+      this.element = new SelectComponent("Seleciona una opcio", "select1", "select1");
+      this.element.afegirFill("Simple", "Visual");
     } else if (element === "titol") {
       this.element = new Titol("");
     } else {

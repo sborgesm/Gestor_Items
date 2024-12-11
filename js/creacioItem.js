@@ -17,7 +17,6 @@ let nouDiv = new DivComponent('', 'gran');
 // Crear instancia de Targeta
 let targeta1 = new Targeta('opcions', 'Tria', 'Quin tipus d\'item vols crear?', 'select');
 let targeta2 = new Targeta('opcions', 'Crea', 'Omple les dades');
-let nouSelect = new SelectComponent('tipus', 'text', 'item');
 
 // Añadir la targeta como hijo del div principal
 nouDiv.afegirFill(targeta1);
@@ -28,8 +27,6 @@ document.addEventListener("DOMContentLoaded", () => {
     let contenedor = document.getElementById("dades");
     titolEntrada.append(contenedor);
     nouDiv.append(contenedor); // Renderiza el div principal junto con la targeta
-    nouSelect.afegirFill("opcio12");
-    nouSelect.append(contenedor);
 });
 
 // document.getElementById('eleccio').addEventListener('click', function () { 

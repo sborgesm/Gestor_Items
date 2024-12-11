@@ -19,8 +19,8 @@ class DivComponent extends ComponentHTML {
     }
 
     // Mètode afegirFill: afegeix un component fill
-    afegirFill(fillComponent) {
-        this.fills.push(fillComponent);
+    afegirFill(...fillComponent) {
+        this.fills.push(...fillComponent);
     }
 }
 

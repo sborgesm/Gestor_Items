@@ -19,8 +19,7 @@ let targeta1 = new Targeta('opcions', 'Tria', 'Quin tipus d\'item vols crear?', 
 let targeta2 = new Targeta('opcions', 'Crea', 'Omple les dades');
 
 // Añadir la targeta como hijo del div principal
-nouDiv.afegirFill(targeta1);
-nouDiv.afegirFill(targeta2);
+nouDiv.afegirFill(targeta1, targeta2);
 
 // Esperar que el DOM esté listo y renderizar
 document.addEventListener("DOMContentLoaded", () => {

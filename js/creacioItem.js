@@ -14,8 +14,13 @@ titolEntrada.canviarContingut("Creacio d'items");
 // Crear instancia del DivComponent "nouDiv"
 let nouDiv = new DivComponent('', 'gran');
 
+// Crear instancia de SelectComponent
+const select1 = new SelectComponent("Seleciona una opcio", "select1", "select1");
+select1.afegirFill("Simple", "Visual");
+
 // Crear instancia de Targeta
-let targeta1 = new Targeta('opcions', 'Tria', 'Quin tipus d\'item vols crear?', 'select');
+let targeta1 = new Targeta('opcions', 'Tria', 'Quin tipus d\'item vols crear?', select1);
+console.log(targeta1.render());
 let targeta2 = new Targeta('opcions', 'Crea', 'Omple les dades');
 
 // Añadir la targeta como hijo del div principal

@@ -5,7 +5,7 @@ import { Titol } from "./Titol.js";
 import { SelectComponent } from "./select.js";
 
 class Targeta extends ComponentHTML {
-  constructor(classFill = "", nomBoto = "", nomTitol = "", element = "") {
+  constructor(classFill = "", nomBoto = "", nomTitol = "", element = null) {
     super("");
     this.div = new DivComponent("", classFill);
     this.boto = new Boto(nomBoto);
@@ -16,8 +16,6 @@ class Targeta extends ComponentHTML {
       this.element.afegirFill("Simple", "Visual");
     } else if (element === "titol") {
       this.element = new Titol("");
-    } else {
-      this.element = null;
     }
   }
   render() {

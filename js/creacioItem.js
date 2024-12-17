@@ -19,8 +19,7 @@ const select1 = new SelectComponent("Seleciona una opcio", "select1", "select1")
 select1.afegirFill("Simple", "Visual");
 
 // Crear instancia de Targeta
-let targeta1 = new Targeta('opcions', 'Tria', 'Quin tipus d\'item vols crear?', select1);
-console.log(targeta1.render());
+let targeta1 = new Targeta('opcions', 'Tria', 'Quin tipus d\'item vols crear?', select1, "boto_targeta");
 let targeta2 = new Targeta('opcions', 'Crea', 'Omple les dades');
 
 // Añadir la targeta como hijo del div principal
@@ -31,19 +30,9 @@ document.addEventListener("DOMContentLoaded", () => {
     let contenedor = document.getElementById("dades");
     titolEntrada.append(contenedor);
     nouDiv.append(contenedor); // Renderiza el div principal junto con la targeta
+    targeta1.boto.addEventListener('click', () => {
+        alert("Has triat: " + select1.value);
+    });
 });
 
-// document.getElementById('eleccio').addEventListener('click', function () { 
-//     // Obtener la opción seleccionada
-//     let elementSeleccionat = document.querySelector('input[name="eleccio"]:checked'); 
-//     // Obtener el texto asociado
-//     let nomdeSeleccio = document.querySelector(`label[for="${elementSeleccionat.id}"]`);
-    
-//     if (nomdeSeleccio.innerText == 'Simple') {
-//         let simple = new Simple();
-//         simple.afegirNom();
-//         simple.afegirDescripcio();
-//     } else {
-//         // Lógica para otras opciones
-//     }
-// });
+

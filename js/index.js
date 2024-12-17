@@ -10,6 +10,7 @@ titolEntrada.canviarContingut("Taula d'items");
 
 // Crear una instància de Boto 
 let botoAfegir = new Boto("Afegir Item", "boto-afegir");
+let botoCerca = new Boto("Cerca", "boto-cerca");
 
 // Crear una instància de Input 
 let inputCerca = new Input('text', '', 'Introdueix el nom d\'item');
@@ -25,11 +26,13 @@ document.addEventListener("DOMContentLoaded", () => {
     titolEntrada.append(contenedor);
     botoAfegir.append(contenedor);
     inputCerca.append(contenedor);
+    botoCerca.append(contenedor);
     taula.append(contenedor);
-
+    botoAfegir.addEventListener("click", () => {
+        window.location.href = "./views/creacioItem.html";
+    });
+    botoCerca.addEventListener("click", () => {
+        window.location.href = "https://www.google.com";
+    });
 });
 
-// Add event listener after button is appended to the container
-botoAfegir.addEventListener("click", () => {
-    window.location.href = "./views/creacioItem.html";
-});

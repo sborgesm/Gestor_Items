@@ -8,14 +8,12 @@ class Boto extends ComponentHTML {
 
   // Mètode render: retorna el botó HTML com a string, incloent l'event onclick per redirigir a una altra pàgina
   render() {
-    return `<button id="${this.id}">${this.html}</button>`; // Include id in button element
+    return `<button id="${this.id}">${this.html}</button>`;
   }
 
   addEventListener(event, callback) {
-    document.addEventListener("DOMContentLoaded", () => {
-      let boto = document.getElementById(this.id); // Use getElementById with the specific id
-      boto.addEventListener(event, callback);
-    });
+    let boto = document.getElementById(this.id);
+    boto.addEventListener(event, callback);
   }
 }
 

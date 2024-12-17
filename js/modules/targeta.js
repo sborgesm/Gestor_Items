@@ -17,10 +17,10 @@ class Targeta extends ComponentHTML {
    * @param {string} nomTitol - El nom del titol de la targeta.
    * @param {ComponentHTML} element - L'element que es vol renderitzar dins de la targeta.
    */
-  constructor(classFill = "", nomBoto = "", nomTitol = "", element = null) {
+  constructor(classFill = "", nomBoto = "", nomTitol = "", element = null, id = "") {
     super("");
     this.div = new DivComponent("", classFill);
-    this.boto = new Boto(nomBoto);
+    this.boto = new Boto(nomBoto, id);
     this.titol = new Titol(nomTitol, "h2");
     this.element = element;
   }
@@ -41,4 +41,3 @@ class Targeta extends ComponentHTML {
 }
 
 export { Targeta };
-

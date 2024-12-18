@@ -15,7 +15,7 @@ titolEntrada.canviarContingut("Creacio d'items");
 let nouDiv = new DivComponent('', 'gran');
 
 // Crear instancia de SelectComponent
-const select1 = new SelectComponent("Seleciona una opcio", "select1", "select1");
+const select1 = new SelectComponent("Seleciona una opcio ", "nomSelect", "idSelect");
 select1.afegirFill("Simple", "Visual");
 
 // Crear instancia de Targeta
@@ -31,7 +31,12 @@ document.addEventListener("DOMContentLoaded", () => {
     titolEntrada.append(contenedor);
     nouDiv.append(contenedor); // Renderiza el div principal junto con la targeta
     targeta1.boto.addEventListener('click', () => {
-        alert("Has triat: " + select1.value);
+        const nomSeleccionat = select1.obtenirSeleccio(); // Obtener selección al hacer clic
+        if (nomSeleccionat) {
+            alert("Has triat: " + nomSeleccionat);
+        } else {
+            alert("No has seleccionat cap opció.");
+        }
     });
 });
 

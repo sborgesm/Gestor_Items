@@ -41,6 +41,12 @@ class SelectComponent extends ComponentHTML {
     afegirFill(...optionComponent) {
         this.options.push(...optionComponent);
     }
+
+    obtenirSeleccio() {
+        const selectElement = document.getElementById(this.idNom);
+        return selectElement.value; 
+    }
+    
 }
 
 export { SelectComponent };

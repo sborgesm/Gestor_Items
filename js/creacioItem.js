@@ -19,7 +19,8 @@ const select1 = new SelectComponent("Seleciona una opcio ", "nomSelect", "idSele
 select1.afegirFill("Simple", "Visual");
 
 // Crear instancia de Targeta
-let targeta1 = new Targeta('opcions', 'Tria', 'Quin tipus d\'item vols crear?', select1, "boto_targeta");
+let targeta1 = new Targeta('opcions', 'Tria', 'Quin tipus d\'item vols crear?', "botoTriarItem");
+targeta1.afegirFill(select1);
 
 
 // Añadir la targeta como hijo del div principal
@@ -35,7 +36,15 @@ document.addEventListener("DOMContentLoaded", () => {
         if(nomSeleccionat === "Simple") {
             let inputNom = new Input('text', '', 'Introdueix el nom de l\'item');
             let inputDescripcio = new Input('text', '', 'Introdueix la descripcio de l\'item');
-            let targeta2 = new Targeta('opcions', 'Crea', 'Dades de l\'item simple', inputNom, inputDescripcio);
+            let targeta2 = new Targeta('opcions', 'Crea', 'Dades de l\'item simple', "botoCrearItem");
+            targeta2.afegirFill(inputNom, inputDescripcio);
+            targeta2.update(document.getElementById("dadesaOmplir"));
+        }else{
+            let inputNom = new Input('text', '', 'Introdueix el nom de l\'item');
+            let inputDescripcio = new Input('text', '', 'Introdueix la descripcio de l\'item');
+            let inputUrl = new Input('text', '', 'Introdueix la url de la imatge');
+            let targeta2 = new Targeta('opcions', 'Crea', 'Dades de l\'item visual', "botoCrearItem");
+            targeta2.afegirFill(inputNom, inputDescripcio, inputUrl);
             targeta2.update(document.getElementById("dadesaOmplir"));
         }
         

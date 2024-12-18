@@ -34,7 +34,7 @@ input {
     align-items: center; 
 }
 
-.opcions, .opcions2{
+.opcions{
     background-color: #f0f0f0;
     width: 30%;
     display: flex;
@@ -47,6 +47,16 @@ input {
     align-items: center;
 }
 
+select{
+    width: 60%;
+    padding: 5px 10px;
+    background-color: white;
+    color: #4CAF50;
+    border: 1px solid #4CAF50;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
 .opcions label{
     font-size: larger;
 }
@@ -56,7 +66,8 @@ input {
     color: #4CAF50;
 }
 
-.opcions form{
+.opcions input[type="text"]{
+    width: 80%;
     text-align: center;
 }
 

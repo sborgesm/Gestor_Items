@@ -17,24 +17,31 @@ class Targeta extends ComponentHTML {
    * @param {string} nomTitol - El nom del titol de la targeta.
    * @param {ComponentHTML} element - L'element que es vol renderitzar dins de la targeta.
    */
-  constructor(classFill = "", nomBoto = "", nomTitol = "", element = null, id = "") {
+  constructor(classFill = "", nomBoto = "", nomTitol = "", id = "") {
     super("");
     this.div = new DivComponent("", classFill);
     this.boto = new Boto(nomBoto, id);
     this.titol = new Titol(nomTitol, "h2");
-    this.element = element;
+    this.fills = [];
   }
+
+  // Mètode afegirFill: afegeix un component fill
+  afegirFill(...fillComponent) {
+    this.fills.push(...fillComponent);
+  }
+
+  
 
   /**
    * Retorna l'element HTML de la targeta.
    * @return {string} L'element HTML de la targeta.
    */
   render() {
-    const elementHTML = this.element ? this.element.render() : ""; // Si no hi ha element, retorna una string buit
+    let fillsHTML = this.fills.map(fill => fill.render()).join('');
     return ` 
       <div class="${this.div.classNom}">
         ${this.titol.render()}
-        ${elementHTML}
+        ${fillsHTML}
         ${this.boto.render()}
       </div>`;
   }

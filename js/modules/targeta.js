@@ -1,7 +1,7 @@
 import { ComponentHTML } from "./ComponentHTML.js";
 import { DivComponent } from "./div.js";
 import { Boto } from "./boto.js";
-import { Titol } from "./Titol.js";
+import { Titol } from "./titol.js";
 
 /**
  * Classe que representa una targeta amb un titol, un element i un boto .

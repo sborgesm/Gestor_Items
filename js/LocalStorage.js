@@ -33,3 +33,5 @@ class LocalStorage {
     return this.items;
   }
 }
+
+export { LocalStorage };

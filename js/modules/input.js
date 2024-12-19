@@ -11,12 +11,13 @@ class Input extends ComponentHTML {
    * @param {string} valor - Valor de l'input
    * @param {string} placeholder - Placeholder de l'input
    */
-  constructor(tipus = "text", valor = "", placeholder = "") {
+  constructor(id = "", tipus = "text", valor = "", placeholder = "") {
     super();
+    this.id = id;
     this.tipus = tipus;
     this.valor = valor;
     this.placeholder = placeholder;
-    this.html = `<input type="${tipus}" value="${valor}" placeholder="${placeholder}">`;
+    this.html = `<input id="${id}" type="${tipus}" value="${valor}" placeholder="${placeholder}">`;
   }
 
   /**
@@ -25,7 +26,7 @@ class Input extends ComponentHTML {
    */
   canviarTipus(nouTipus) {
     this.tipus = nouTipus;
-    this.html = `<input type="${this.tipus}" value="${this.valor}" placeholder="${this.placeholder}">`;
+    this.html = `<input id="${this.id}" type="${this.tipus}" value="${this.valor}" placeholder="${this.placeholder}">`;
   }
 
   /**
@@ -34,7 +35,7 @@ class Input extends ComponentHTML {
    */
   canviarValor(nouValor) {
     this.valor = nouValor;
-    this.html = `<input type="${this.tipus}" value="${this.valor}" placeholder="${this.placeholder}">`;
+    this.html = `<input id="${this.id}" type="${this.tipus}" value="${this.valor}" placeholder="${this.placeholder}">`;
   }
 
   /**
@@ -44,6 +45,14 @@ class Input extends ComponentHTML {
   canviarPlaceholder(nouPlaceholder) {
     this.placeholder = nouPlaceholder;
     this.html = `<input type="${this.tipus}" value="${this.valor}" placeholder="${this.placeholder}">`;
+  }
+
+  /**
+   * Funcio per obtenir el valor de l'input
+   * @returns {string} Retorna el valor de l'input
+   */
+  obtenirValor()  {
+    return document.getElementById(this.id).value;
   }
 }
 

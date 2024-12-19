@@ -6,6 +6,7 @@ import { DivComponent } from "./modules/div.js";
 import { ComponentHTML } from "./modules/ComponentHTML.js";
 import { Targeta } from "./modules/targeta.js";
 import { SelectComponent } from "./modules/select.js";
+import { LocalStorage} from "./LocalStorage.js"
 
 // Crear una instancia de Titol 
 let titolEntrada = new Titol('h1');  
@@ -31,21 +32,45 @@ document.addEventListener("DOMContentLoaded", () => {
     let contenedor = document.getElementById("dades");
     titolEntrada.append(contenedor);
     nouDiv.append(contenedor); // Renderiza el div principal junto con la targeta
+
     targeta1.boto.addEventListener('click', () => {
         const nomSeleccionat = select1.obtenirSeleccio(); 
+
         if(nomSeleccionat === "Simple") {
-            let inputNom = new Input('text', '', 'Introdueix el nom de l\'item');
-            let inputDescripcio = new Input('text', '', 'Introdueix la descripcio de l\'item');
+            let inputNom = new Input('InputNomSimple','text', '', 'Introdueix el nom de l\'item');
+            let inputDescripcio = new Input('InputDescripcioSimple','text', '', 'Introdueix la descripcio de l\'item');
             let targeta2 = new Targeta('opcions', 'Crea', 'Dades de l\'item simple', "botoCrearItem");
+
             targeta2.afegirFill(inputNom, inputDescripcio);
             targeta2.update(document.getElementById("dadesaOmplir"));
-        }else{
-            let inputNom = new Input('text', '', 'Introdueix el nom de l\'item');
-            let inputDescripcio = new Input('text', '', 'Introdueix la descripcio de l\'item');
-            let inputUrl = new Input('text', '', 'Introdueix la url de la imatge');
+            
+            document.getElementById("botoCrearItem").addEventListener('click', () =>  {
+
+                const itemData = {
+                    nom: inputNom.obtenirValor(),
+                    descripcio: inputDescripcio.obtenirValor()
+                };
+                localStorage.setItem('itemSimple', JSON.stringify(itemData));
+            });
+
+        } else {
+            let inputNom = new Input('inputNomVisual','text', '', 'Introdueix el nom de l\'item');
+            let inputDescripcio = new Input('InputDescripcioVisual','text', '', 'Introdueix la descripcio de l\'item');
+            let inputUrl = new Input('InputUrlVisual','text', '', 'Introdueix la url de la imatge');
             let targeta2 = new Targeta('opcions', 'Crea', 'Dades de l\'item visual', "botoCrearItem");
+
             targeta2.afegirFill(inputNom, inputDescripcio, inputUrl);
             targeta2.update(document.getElementById("dadesaOmplir"));
+
+            document.getElementById("botoCrearItem").addEventListener('click', () =>  {
+                
+                const itemData = {
+                    nom: inputNom.obtenirValor(),
+                    descripcio: inputDescripcio.obtenirValor(),
+                    url: inputUrl.obtenirValor()
+                };
+                localStorage.setItem('itemVisual', JSON.stringify(itemData));
+            });
         }
         
     });

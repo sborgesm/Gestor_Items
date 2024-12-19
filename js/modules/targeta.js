@@ -15,7 +15,7 @@ class Targeta extends ComponentHTML {
    * @param {string} classFill - La classe CSS del div que envolta la targeta.
    * @param {string} nomBoto - El nom del boto de la targeta.
    * @param {string} nomTitol - El nom del titol de la targeta.
-   * @param {ComponentHTML} element - L'element que es vol renderitzar dins de la targeta.
+   * @param {string} id - L'id del boto de la targeta.
    */
   constructor(classFill = "", nomBoto = "", nomTitol = "", id = "") {
     super("");

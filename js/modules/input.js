@@ -7,6 +7,7 @@ import { ComponentHTML } from "./ComponentHTML.js";
 class Input extends ComponentHTML {
   /**
    * Constructor de la classe Input
+   * @param {string} id - Id de l'input 
    * @param {string} tipus - Tipus de l'input (text, password, ...)
    * @param {string} valor - Valor de l'input
    * @param {string} placeholder - Placeholder de l'input

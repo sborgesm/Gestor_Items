@@ -1,34 +1,37 @@
 import { ComponentHTML } from "./ComponentHTML.js";
+
 /**
  * Classe que representa una taula amb dades.
- * La taula esta composta per capcaleres i dades.
- * El constructor rep les capcaleres i les dades com a par metres i
+ * La taula està composta per capçaleres i dades.
+ * El constructor rep les capçaleres i les dades com a paràmetres i
  * es crea l'HTML de la taula.
  * @class
  * @extends ComponentHTML
  */
 class Taula extends ComponentHTML {
   /**
-   * El constructor rep les capcaleres i les dades com a par metres i
+   * El constructor rep les capçaleres i les dades com a paràmetres i
    * es crea l'HTML de la taula.
-   * La taula es pot actualitzar amb noves dades amb el metode update.
+   * La taula es pot actualitzar amb noves dades amb el mètode update.
+   * @param {Array} capcaleres - les capçaleres de la taula
+   * @param {Array} dades - les dades de la taula
    */
-  constructor(capcaleres, dada) {
-    let html = Taula.createTableHTML(capcaleres, dada);
+  constructor(capcaleres, dades) {
+    const html = Taula.createTableHTML(capcaleres, dades);
     super(html);
     this.headers = capcaleres;
-    this.data = dada;
+    this.data = dades;
   }
 
   /**
    * Mètode estàtic per crear l'HTML de la taula.
-   * Rep les capcaleres i les dades com a parametres i
+   * Rep les capçaleres i les dades com a paràmetres i
    * es crea l'HTML de la taula.
-   * @param {Array} capcaleres - les capcaleres de la taula
-   * @param {Array} dada - les dades de la taula
-   * @returns {String} l'HTML de la taula
+   * @param {Array} capcaleres - les capçaleres de la taula
+   * @param {Array} dades - les dades de la taula
+   * @returns {string} l'HTML de la taula
    */
-  static createTableHTML(capcaleres, dada) {
+  static createTableHTML(capcaleres, dades) {
     let taulaHTML = "<table><thead><tr>";
 
     // Afegir capçaleres
@@ -38,7 +41,7 @@ class Taula extends ComponentHTML {
     taulaHTML += "</tr></thead><tbody>";
 
     // Afegir dades
-    dada.forEach((row) => {
+    dades.forEach((row) => {
       taulaHTML += "<tr>";
       row.forEach((cell) => {
         taulaHTML += `<td>${cell}</td>`;
@@ -51,44 +54,38 @@ class Taula extends ComponentHTML {
   }
 
   /**
-   * Metode per carregar les dades de l'objecte localStorage i mostrar-les a la taula.
-   * @param {object} taula - la taula on es mostraran les dades
+   * Mètode per carregar les dades de l'objecte localStorage i mostrar-les a la taula.
    */
-  carregarDades(taula) {
+  carregarDades() {
     const dades = JSON.parse(localStorage.getItem("dades") || "[]");
 
-    const files = dades.map((dada) => { // Crear un array amb les dades de cada item
-      return [
-        dada.nom,
-        dada.data_creacio || "-",
-        dada.data_modificacio || "-",
-        dada.url || "-",
-        `<button onclick="eliminarItem('${dada.id}')">Eliminar</button>`, // Crear un botó per eliminar l'item
-      ];
-    });
+    const files = dades.map((dada) => [
+      dada.nom,
+      dada.data_creacio || "-",
+      dada.data_modificacio || "-",
+      dada.url || "-",
+      `<button onclick="this.closest('.taula').eliminarItem('${dada.id}')">Eliminar</button>`,
+    ]);
 
-    taula.posarDada(files); // Posar les dades a la taula
+    this.posarDades(files);
   }
 
   /**
-   * Metode per eliminar un item de la taula.
+   * Mètode per eliminar un item de la taula.
    * @param {string} id - l'id de l'item a eliminar
    */
   eliminarItem(id) {
     let items = JSON.parse(localStorage.getItem("dades") || "[]");
-
-    items = items.filter(item => item.id !== id); // Filtrar els items per eliminar l'item amb l'id donat
-
-    localStorage.setItem("dades", JSON.stringify(items)); // Actualitzar l'objecte localStorage
-
-    this.carregarDades(this.taula); // Actualitzar la taula
+    items = items.filter((item) => item.id !== id);
+    localStorage.setItem("dades", JSON.stringify(items));
+    this.carregarDades();
   }
 
   /**
-   * Mètode per canviar les capcaleres.
-   * Rep les noves capcaleres com a parametre i
-   * es crea l'HTML de la taula amb les noves capcaleres.
-   * @param {Array} novesCapcaleres - les noves capcaleres de la taula
+   * Mètode per canviar les capçaleres.
+   * Rep les noves capçaleres com a paràmetre i
+   * es crea l'HTML de la taula amb les noves capçaleres.
+   * @param {Array} novesCapcaleres - les noves capçaleres de la taula
    */
   posarCapcaleres(novesCapcaleres) {
     this.headers = novesCapcaleres;
@@ -97,12 +94,12 @@ class Taula extends ComponentHTML {
 
   /**
    * Mètode per canviar les dades.
-   * Rep les noves dades com a parametre i
+   * Rep les noves dades com a paràmetre i
    * es crea l'HTML de la taula amb les noves dades.
-   * @param {Array} novaDada - les noves dades de la taula
+   * @param {Array} novesDades - les noves dades de la taula
    */
-  posarDada(novaDada) {
-    this.data = novaDada;
+  posarDades(novesDades) {
+    this.data = novesDades;
     this.html = Taula.createTableHTML(this.headers, this.data);
   }
 }

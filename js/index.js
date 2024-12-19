@@ -18,6 +18,7 @@ let inputCerca = new Input('text', '', 'Introdueix el nom d\'item');
 // Crear una instància de Taula
 let capcaleres = ['Nom item', 'Data creacio', 'Data modificacio', 'Imatge relacionada', 'Esborrar item'];
 let taula = new Taula(capcaleres, []);
+taula.carregarDades(taula);
 
 // Esperar que el DOM estigui llest i renderitzar
 document.addEventListener("DOMContentLoaded", () => {

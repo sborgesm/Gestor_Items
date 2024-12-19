@@ -51,6 +51,40 @@ class Taula extends ComponentHTML {
   }
 
   /**
+   * Metode per carregar les dades de l'objecte localStorage i mostrar-les a la taula.
+   * @param {object} taula - la taula on es mostraran les dades
+   */
+  carregarDades(taula) {
+    const dades = JSON.parse(localStorage.getItem("dades") || "[]");
+
+    const files = dades.map((dada) => { // Crear un array amb les dades de cada item
+      return [
+        dada.nom,
+        dada.data_creacio || "-",
+        dada.data_modificacio || "-",
+        dada.url || "-",
+        `<button onclick="eliminarItem('${dada.id}')">Eliminar</button>`, // Crear un botó per eliminar l'item
+      ];
+    });
+
+    taula.posarDada(files); // Posar les dades a la taula
+  }
+
+  /**
+   * Metode per eliminar un item de la taula.
+   * @param {string} id - l'id de l'item a eliminar
+   */
+  eliminarItem(id) {
+    let items = JSON.parse(localStorage.getItem("dades") || "[]");
+
+    items = items.filter(item => item.id !== id); // Filtrar els items per eliminar l'item amb l'id donat
+
+    localStorage.setItem("dades", JSON.stringify(items)); // Actualitzar l'objecte localStorage
+
+    this.carregarDades(this.taula); // Actualitzar la taula
+  }
+
+  /**
    * Mètode per canviar les capcaleres.
    * Rep les noves capcaleres com a parametre i
    * es crea l'HTML de la taula amb les noves capcaleres.

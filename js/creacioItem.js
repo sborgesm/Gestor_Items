@@ -6,7 +6,7 @@ import { DivComponent } from "./modules/div.js";
 import { ComponentHTML } from "./modules/ComponentHTML.js";
 import { Targeta } from "./modules/targeta.js";
 import { SelectComponent } from "./modules/select.js";
-import { LocalStorage} from "./LocalStorage.js"
+import { GuardarDades } from "./GuardarDades.js";
 
 // Crear una instancia de Titol 
 let titolEntrada = new Titol('h1');  
@@ -29,12 +29,14 @@ nouDiv.afegirFill(targeta1);
 
 // Esperar que el DOM esté listo y renderizar
 document.addEventListener("DOMContentLoaded", () => {
+    let dadesRecollides = new GuardarDades();
     let contenedor = document.getElementById("dades");
     titolEntrada.append(contenedor);
     nouDiv.append(contenedor); // Renderiza el div principal junto con la targeta
 
     targeta1.boto.addEventListener('click', () => {
         const nomSeleccionat = select1.obtenirSeleccio(); 
+        let dadesRecollides = new GuardarDades();
 
         if(nomSeleccionat === "Simple") {
             let inputNom = new Input('InputNomSimple','text', '', 'Introdueix el nom de l\'item');
@@ -46,11 +48,10 @@ document.addEventListener("DOMContentLoaded", () => {
             
             document.getElementById("botoCrearItem").addEventListener('click', () =>  {
 
-                const itemData = {
-                    nom: inputNom.obtenirValor(),
-                    descripcio: inputDescripcio.obtenirValor()
-                };
-                localStorage.setItem('itemSimple', JSON.stringify(itemData));
+                dadesRecollides.guardarItem(inputNom.obtenirValor(), inputDescripcio.obtenirValor());
+                alert(`L'item simple ${ inputNom.obtenirValor() } creat correctament`);
+                inputNom.buidarInput();
+                inputDescripcio.buidarInput();
             });
 
         } else {
@@ -64,12 +65,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
             document.getElementById("botoCrearItem").addEventListener('click', () =>  {
                 
-                const itemData = {
-                    nom: inputNom.obtenirValor(),
-                    descripcio: inputDescripcio.obtenirValor(),
-                    url: inputUrl.obtenirValor()
-                };
-                localStorage.setItem('itemVisual', JSON.stringify(itemData));
+                dadesRecollides.guardarItem(inputNom.obtenirValor(), inputDescripcio.obtenirValor(), inputUrl.obtenirValor());
+                alert(`L'item visual ${inputNom.obtenirValor()} creat correctament`);
+                inputNom.buidarInput();
+                inputDescripcio.buidarInput();
+                inputUrl.buidarInput();
             });
         }
         

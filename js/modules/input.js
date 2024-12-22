@@ -54,6 +54,10 @@ class Input extends ComponentHTML {
   obtenirValor()  {
     return document.getElementById(this.id).value;
   }
+
+  buidarInput() {
+    document.getElementById(this.id).value = "";
+  }
 }
 
 export { Input };

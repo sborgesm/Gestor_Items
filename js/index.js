@@ -2,7 +2,7 @@
 import { Taula } from "./modules/taula.js";
 import { Input } from "./modules/input.js";
 import { Boto } from "./modules/boto.js";
-import { Titol } from "./modules/Titol.js";
+import { Titol } from "./modules/titol.js";
 
 // Crear una instancia de Titol 
 let titolEntrada = new Titol('h1');  
@@ -16,7 +16,7 @@ let botoCerca = new Boto("Cerca", "boto-cerca");
 let inputCerca = new Input('text', '', 'Introdueix el nom d\'item');
 
 // Crear una instància de Taula
-let capcaleres = ['Nom item', 'Data creacio', 'Data modificacio', 'Imatge relacionada', 'Esborrar item'];
+let capcaleres = ['Nom item', 'Descripció', 'Data creacio', 'Data modificacio', 'Imatge relacionada', 'Esborrar item'];
 let taula = new Taula(capcaleres, []);
 taula.carregarDades(taula);
 

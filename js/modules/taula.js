@@ -55,14 +55,15 @@ class Taula extends ComponentHTML {
    * @param {object} taula - la taula on es mostraran les dades
    */
   carregarDades(taula) {
-    const dades = JSON.parse(localStorage.getItem("dades") || "[]");
+    const dades = JSON.parse(localStorage.getItem("items") || "[]");
 
     const files = dades.map((dada) => { // Crear un array amb les dades de cada item
       return [
         dada.nom,
-        dada.data_creacio || "-",
-        dada.data_modificacio || "-",
-        dada.url || "-",
+        dada.descripcio,
+        dada.dataCreacio || "-",
+        dada.dataModificacio || "-",
+        dada.imatge || "-",
         `<button onclick="eliminarItem('${dada.id}')">Eliminar</button>`, // Crear un botó per eliminar l'item
       ];
     });

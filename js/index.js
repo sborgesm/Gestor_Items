@@ -15,31 +15,24 @@ import { Titol } from "./modules/Titol.js";
     const inputCerca = new Input('InputCerca','text', '', "Introdueix el nom d'item");
 
 // Crear una instància de Taula
-let capcaleres = ['Nom item', 'Data creacio', 'Data modificacio', 'Imatge relacionada', 'Esborrar item'];
+let capcaleres = ['Nom item', 'Descripció','Data creacio', 'Data modificacio', 'Imatge relacionada', 'Esborrar item'];
 let taula = new Taula(capcaleres, []);
 taula.carregarDades(taula);
 
-    // Renderitzar elements
+// Esperar que el DOM estigui llest i renderitzar
+document.addEventListener("DOMContentLoaded", () => {
+    let contenedor = document.getElementById("dades");
+
     titolEntrada.append(contenedor);
     botoAfegir.append(contenedor);
     inputCerca.append(contenedor);
     botoCerca.append(contenedor);
     taula.append(contenedor);
-
-    // Carregar dades a la taula
-    taula.carregarDades();
-
-    // Afegir event listeners
     botoAfegir.addEventListener("click", () => {
         window.location.href = "./views/creacioItem.html";
     });
-
     botoCerca.addEventListener("click", () => {
-        const searchTerm = inputCerca.obtenirValor();
-        if (searchTerm) {
-            window.location.href = `https://www.google.com/search?q=${encodeURIComponent(searchTerm)}`;
-        } else {
-            alert("Si us plau, introdueix un terme de cerca.");
-        }
+        window.location.href = "https://www.google.com";
     });
-});
+});;
+

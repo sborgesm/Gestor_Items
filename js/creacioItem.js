@@ -1,9 +1,9 @@
 import { Taula } from "./modules/taula.js";
 import { Input } from "./modules/input.js";
 import { Boto } from "./modules/boto.js";
-import { Titol } from "./modules/titol.js";
+import { Titol } from "./modules/Titol.js";
 import { DivComponent } from "./modules/div.js";
-import { ComponentHTML } from "./modules/ComponentHTML.js";
+import { Imatge } from "./modules/Imatge.js";
 import { Targeta } from "./modules/targeta.js";
 import { SelectComponent } from "./modules/select.js";
 import { GuardarDades } from "./GuardarDades.js";
@@ -29,7 +29,6 @@ nouDiv.afegirFill(targeta1);
 
 // Esperar que el DOM esté listo y renderizar
 document.addEventListener("DOMContentLoaded", () => {
-    let dadesRecollides = new GuardarDades();
     let contenedor = document.getElementById("dades");
     titolEntrada.append(contenedor);
     nouDiv.append(contenedor); // Renderiza el div principal junto con la targeta
@@ -64,8 +63,8 @@ document.addEventListener("DOMContentLoaded", () => {
             targeta2.update(document.getElementById("dadesaOmplir"));
 
             document.getElementById("botoCrearItem").addEventListener('click', () =>  {
-                
-                dadesRecollides.guardarItem(inputNom.obtenirValor(), inputDescripcio.obtenirValor(), inputUrl.obtenirValor());
+                let inserirImatge = new Imatge(inputUrl.obtenirValor(), 'imatge', '50', '50');
+                dadesRecollides.guardarItem(inputNom.obtenirValor(), inputDescripcio.obtenirValor(), inserirImatge.html);
                 alert(`L'item visual ${inputNom.obtenirValor()} creat correctament`);
                 inputNom.buidarInput();
                 inputDescripcio.buidarInput();

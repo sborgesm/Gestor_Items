@@ -1,7 +1,4 @@
-/**
- * Classe que s'encarrega de gestionar la persistencia de les dades en el
- * LocalStorage del navegador.
- */
+import { Imatge } from "./modules/Imatge.js";
 class GuardarDades {
   /**
    * Constructor de la classe.
@@ -17,6 +14,8 @@ class GuardarDades {
     let any = data.getFullYear();
     return `${dia}/${mes}/${any}`; // Formata la data
   }
+
+  
 
   guardarItem(nom, descripcio, url) {
     const dataActual = new Date();

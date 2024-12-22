@@ -28,11 +28,15 @@ document.addEventListener("DOMContentLoaded", () => {
     inputCerca.append(contenedor);
     botoCerca.append(contenedor);
     taula.append(contenedor);
+    let boto = document.getElementById("boto-eliminar");
+      boto.addEventListener("click", () => {
+        alert("Item eliminat");
+      });
     botoAfegir.addEventListener("click", () => {
         window.location.href = "./views/creacioItem.html";
     });
     botoCerca.addEventListener("click", () => {
         window.location.href = "https://www.google.com";
     });
-});;
+});
 

@@ -1,4 +1,5 @@
 import { ComponentHTML } from "./ComponentHTML.js";
+import { Boto } from "./boto.js";
 /**
  * Classe que representa una taula amb dades.
  * La taula esta composta per capcaleres i dades.
@@ -56,34 +57,33 @@ class Taula extends ComponentHTML {
    */
   carregarDades(taula) {
     const dades = JSON.parse(localStorage.getItem("items") || "[]");
+    let botoEliminar = new Boto("Eliminar", "boto-eliminar");
+      const files = dades.map((dada) => { // Crear un array amb les dades de cada item
+        return [
+          dada.nom,
+          dada.descripcio,
+          dada.dataCreacio || "-",
+          dada.dataModificacio || "-",
+          dada.imatge || "-",
+          botoEliminar.render()
+        ];
+      });
 
-    const files = dades.map((dada) => { // Crear un array amb les dades de cada item
-      return [
-        dada.nom,
-        dada.descripcio,
-        dada.dataCreacio || "-",
-        dada.dataModificacio || "-",
-        dada.imatge || "-",
-        `<button onclick="eliminarItem('${dada.id}')">Eliminar</button>`, // Crear un botó per eliminar l'item
-      ];
-    });
-
-    taula.posarDada(files); // Posar les dades a la taula
-  }
+      taula.posarDada(files); // Posar les dades a la taula
+    }
 
   /**
    * Metode per eliminar un item de la taula.
-   * @param {string} id - l'id de l'item a eliminar
+   * @param {string} nom - l'id de l'item a eliminar
    */
-  eliminarItem(id) {
-    let items = JSON.parse(localStorage.getItem("dades") || "[]");
+  eliminarItem() {
+      let dades = JSON.parse(localStorage.getItem("items") || "[]");
+      dades = dades.filter(item => item.nom !== nom); // Filtrar els items per eliminar l'item amb l'id donat
 
-    items = items.filter(item => item.id !== id); // Filtrar els items per eliminar l'item amb l'id donat
+      localStorage.setItem("dades", JSON.stringify(dades)); // Actualitzar l'objecte localStorage
 
-    localStorage.setItem("dades", JSON.stringify(items)); // Actualitzar l'objecte localStorage
-
-    this.carregarDades(this.taula); // Actualitzar la taula
-  }
+      this.carregarDades(this.taula); // Actualitzar la taula
+    }
 
   /**
    * Mètode per canviar les capcaleres.
@@ -92,9 +92,9 @@ class Taula extends ComponentHTML {
    * @param {Array} novesCapcaleres - les noves capcaleres de la taula
    */
   posarCapcaleres(novesCapcaleres) {
-    this.headers = novesCapcaleres;
-    this.html = Taula.createTableHTML(this.headers, this.data);
-  }
+      this.headers = novesCapcaleres;
+      this.html = Taula.createTableHTML(this.headers, this.data);
+    }
 
   /**
    * Mètode per canviar les dades.
@@ -103,9 +103,9 @@ class Taula extends ComponentHTML {
    * @param {Array} novaDada - les noves dades de la taula
    */
   posarDada(novaDada) {
-    this.data = novaDada;
-    this.html = Taula.createTableHTML(this.headers, this.data);
-  }
+      this.data = novaDada;
+      this.html = Taula.createTableHTML(this.headers, this.data);
+    }
 }
 
 export { Taula };

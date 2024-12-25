@@ -34,7 +34,15 @@ document.addEventListener("DOMContentLoaded", () => {
         let itemNom = fila.cells[0].innerText; // Obtén el texto de la primera celda 
         taula.eliminarItem(itemNom); // Llama al método para eliminar el ítem
         alert(itemNom + " esborrat"); // Añade esta línea para depurar
-        location.reload(); // Recarga la página
+        fila.remove(); // Elimina la fila de la tabla
+      }
+    });
+
+    contenedor.addEventListener("click", (event) => {
+      if (event.target.tagName === "TD") {
+          let fila = event.target.closest("tr");
+          let itemDades = Array.from(fila.cells).map(cell => cell.innerText);
+          window.location.href = "./views/dadesItem.html?nom=" + itemDades[0];
       }
     });
 

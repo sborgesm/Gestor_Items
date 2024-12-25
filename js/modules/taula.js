@@ -1,5 +1,6 @@
 import { ComponentHTML } from "./ComponentHTML.js";
 import { Boto } from "./boto.js";
+import { Imatge } from "./Imatge.js";
 /**
  * Classe que representa una taula amb dades.
  * La taula esta composta per capcaleres i dades.
@@ -56,8 +57,8 @@ class Taula extends ComponentHTML {
    * @param {object} taula - la taula on es mostraran les dades
    */
   carregarDades(taula) {
-    const dades = JSON.parse(localStorage.getItem("items") || "[]");
-    let botoEliminar = new Boto("Eliminar", "boto-eliminar");
+    const dades = JSON.parse(localStorage.getItem("items") || "[]"); // Obtenir les dades de l'objecte localStorage
+    let imatgeEliminar = new Imatge("./img/brossa.png", " ", "50", "50", "boto-eliminar");
       const files = dades.map((dada) => { // Crear un array amb les dades de cada item
         return [
           dada.nom,
@@ -65,7 +66,7 @@ class Taula extends ComponentHTML {
           dada.dataCreacio || "-",
           dada.dataModificacio || "-",
           dada.imatge || "-",
-          botoEliminar.render()
+          imatgeEliminar.html
         ];
       });
 

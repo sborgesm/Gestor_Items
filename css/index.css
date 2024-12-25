@@ -55,3 +55,7 @@ input {
     cursor: pointer;
     border-radius: 10px;
 }
+
+td{
+    cursor: pointer;
+}

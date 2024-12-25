@@ -1,9 +1,10 @@
 import { ComponentHTML } from './ComponentHTML.js';
 
 class Imatge extends ComponentHTML {
-    constructor(src, alt = '', width = 'auto', height = 'auto') {
-        let html = `<img src="${src}" alt="${alt}" width="${width}" height="${height}">`;
+    constructor(src, alt = '', width = 'auto', height = 'auto', id = '') {
+        let html = `<img id="${id}" src="${src}" alt="${alt}" width="${width}" height="${height}">`;
         super(html);
+        this.id = id;
         this.src = src;
         this.alt = alt;
         this.width = width;

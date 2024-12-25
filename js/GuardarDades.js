@@ -15,8 +15,6 @@ class GuardarDades {
     return `${dia}/${mes}/${any}`; // Formata la data
   }
 
-  
-
   guardarItem(nom, descripcio, url) {
     const dataActual = new Date();
     const item = {

@@ -76,13 +76,13 @@ class Taula extends ComponentHTML {
    * Metode per eliminar un item de la taula.
    * @param {string} nom - l'id de l'item a eliminar
    */
-  eliminarItem() {
+  eliminarItem(nom) {
       let dades = JSON.parse(localStorage.getItem("items") || "[]");
       dades = dades.filter(item => item.nom !== nom); // Filtrar els items per eliminar l'item amb l'id donat
 
-      localStorage.setItem("dades", JSON.stringify(dades)); // Actualitzar l'objecte localStorage
+      localStorage.setItem("items", JSON.stringify(dades)); // Actualitzar l'objecte localStorage
 
-      this.carregarDades(this.taula); // Actualitzar la taula
+      this.carregarDades(this); // Actualitzar la taula
     }
 
   /**

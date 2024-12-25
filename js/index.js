@@ -22,16 +22,21 @@ taula.carregarDades(taula);
 // Esperar que el DOM estigui llest i renderitzar
 document.addEventListener("DOMContentLoaded", () => {
     let contenedor = document.getElementById("dades");
-
     titolEntrada.append(contenedor);
     botoAfegir.append(contenedor);
     inputCerca.append(contenedor);
     botoCerca.append(contenedor);
     taula.append(contenedor);
-    let boto = document.getElementById("boto-eliminar");
-      boto.addEventListener("click", () => {
-        alert("Item eliminat");
+
+    contenedor.addEventListener("click", (event) => { 
+      if (event.target.id && event.target.id.startsWith("boto-eliminar")) {
+        let fila = event.target.closest("tr"); // Encuentra la fila del botón 
+        let itemNom = fila.cells[0].innerText; // Obtén el texto de la primera celda 
+        taula.eliminarItem(itemNom); // Llama al método para eliminar el ítem 
+        alert(itemNom + " esborrat"); // Añade esta línea para depurar
+        } 
       });
+
     botoAfegir.addEventListener("click", () => {
         window.location.href = "./views/creacioItem.html";
     });

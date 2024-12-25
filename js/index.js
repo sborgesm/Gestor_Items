@@ -32,10 +32,11 @@ document.addEventListener("DOMContentLoaded", () => {
       if (event.target.id && event.target.id.startsWith("boto-eliminar")) {
         let fila = event.target.closest("tr"); // Encuentra la fila del botón 
         let itemNom = fila.cells[0].innerText; // Obtén el texto de la primera celda 
-        taula.eliminarItem(itemNom); // Llama al método para eliminar el ítem 
+        taula.eliminarItem(itemNom); // Llama al método para eliminar el ítem
         alert(itemNom + " esborrat"); // Añade esta línea para depurar
-        } 
-      });
+        location.reload(); // Recarga la página
+      }
+    });
 
     botoAfegir.addEventListener("click", () => {
         window.location.href = "./views/creacioItem.html";

@@ -4,8 +4,7 @@ import { Boto } from "./modules/boto.js";
 import { Titol } from "./modules/Titol.js";
 
     // Crear una instancia de Titol 
-    const titolEntrada = new Titol('h1');  
-    titolEntrada.canviarContingut("Taula d'items"); 
+    const titolEntrada = new Titol('Taula d\'items', 'h1');  
 
     // Crear instàncies de Boto 
     const botoAfegir = new Boto("Afegir Item", "boto-afegir");
@@ -42,7 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (event.target.tagName === "TD") {
           let fila = event.target.closest("tr");
           let itemDades = Array.from(fila.cells).map(cell => cell.innerText);
-          window.location.href = "./views/dadesItem.html?nom=" + itemDades[0];
+          window.location.href = "./views/dadesItem.html?nom=" + itemDades[0]+ "&descripcio=" + itemDades[1] +"&imatge=" + itemDades[4];
       }
     });
 

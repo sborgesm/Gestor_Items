@@ -9,19 +9,24 @@ import { SelectComponent } from "./modules/select.js";
 import { GuardarDades } from "./GuardarDades.js";
 
 // Crear una instancia de Titol 
-let titolEntrada = new Titol('Creacio d\'items', 'h1');  
+let titolEntrada = new Titol('Dades de l\'item', 'h1');  
 
 // Crear instancia del DivComponent "nouDiv"
 let nouDiv = new DivComponent('', 'gran', 'dadesaOmplir');
-
-// Crear instancia de SelectComponent
-const select1 = new SelectComponent("Seleciona una opcio ", "nomSelect", "idSelect");
-select1.afegirFill("Simple", "Visual");
+const urlParams = new URLSearchParams(window.location.search); 
+const nom = urlParams.get('nom');
+const descripcio = urlParams.get('descripcio'); 
+let titolNom = new Titol("Nom de l'item: ", 'h4');
+let inputNom = new Input('inputNomVisual','text', '', nom);
+let titolDescripcio = new Titol("Descripcio de l'item: ", 'h4');
+let inputDescripcio = new Input('inputNomVisual','text', '', descripcio);
 
 // Crear instancia de Targeta
-let targeta1 = new Targeta('opcions', 'Tria', 'Quin tipus d\'item vols crear?', "botoTriarItem");
-targeta1.afegirFill(select1);
-
+let targeta1 = new Targeta('opcions', 'Guarda els canvis', '', "botoTriarItem");
+targeta1.afegirFill(titolNom);
+targeta1.afegirFill(inputNom);
+targeta1.afegirFill(titolDescripcio);
+targeta1.afegirFill(inputDescripcio);
 
 // Añadir la targeta como hijo del div principal
 nouDiv.afegirFill(targeta1);
@@ -37,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let dadesRecollides = new GuardarDades();
 
         if(nomSeleccionat === "Simple") {
-            let inputNom = new Input('InputNomSimple','text', '', 'Introdueix el nom de l\'item');
+            
             let inputDescripcio = new Input('InputDescripcioSimple','text', '', 'Introdueix la descripcio de l\'item');
             let targeta2 = new Targeta('opcions', 'Crea', 'Dades de l\'item simple', "botoCrearItem");
 

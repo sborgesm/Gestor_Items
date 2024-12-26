@@ -12,7 +12,7 @@ class Titol extends ComponentHTML {
    * @param {string} contingut - El contingut del títol.
    * @param {string} [tipus=h1] - El tipus de títol (h1, h2, ...).
    */
-  constructor(contingut, tipus = "h1") {
+  constructor(contingut, tipus = "") {
     // Crea l'element HTML del títol
     let html = `<${tipus}>${contingut}</${tipus}>`;
     super(html);

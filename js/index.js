@@ -40,10 +40,20 @@ document.addEventListener("DOMContentLoaded", () => {
     contenedor.addEventListener("click", (event) => {
       if (event.target.tagName === "TD") {
           let fila = event.target.closest("tr");
-          let itemDades = Array.from(fila.cells).map(cell => cell.innerText);
-          window.location.href = "./views/dadesItem.html?nom=" + itemDades[0]+ "&descripcio=" + itemDades[1] +"&imatge=" + itemDades[4];
+          let itemDades = Array.from(fila.cells).map((cell, index) => {
+              // Si és la columna de la imatge (index 4), agafem el `src` de l'element img
+              if (index === 4) {
+                  let img = cell.querySelector("img"); // Busca l'element <img> dins la cel·la
+                  return img ? img.src : ""; // Retorna el `src` o una cadena buida si no hi ha img
+              }
+              return cell.innerText; // Retorna el text per a altres cel·les
+          });
+  
+          // Construir l'URL amb les dades
+          window.location.href = `./views/dadesItem.html?nom=${encodeURIComponent(itemDades[0])}&descripcio=${encodeURIComponent(itemDades[1])}&imatge=${encodeURIComponent(itemDades[4])}`;
       }
-    });
+  });
+  
 
     botoAfegir.addEventListener("click", () => {
         window.location.href = "./views/creacioItem.html";
@@ -51,5 +61,6 @@ document.addEventListener("DOMContentLoaded", () => {
     botoCerca.addEventListener("click", () => {
         window.location.href = "https://www.google.com";
     });
+    
 });
 

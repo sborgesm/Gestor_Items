@@ -32,6 +32,27 @@ class GuardarDades {
     this.items.push(item);
     localStorage.setItem('items', JSON.stringify(this.items));
   }
+
+  eliminarItem(nom) {
+    this.items = this.items.filter(item => item.nom !== nom);
+    localStorage.setItem('items', JSON.stringify(this.items));
+  }
+
+  modificarItem(nom, novesDades) {
+    const dades = JSON.parse(localStorage.getItem("items")) || [];
+    const index = dades.findIndex((item) => item.nom === nom);
+
+    if (dades.dataCreacio != null) {
+      dades.dataCreacio = dades.dataCreacio;
+    }
+
+    if (index !== -1) {
+      // Actualitza l'ítem
+      dades[index] = { ...dades[index], ...novesDades };
+      localStorage.setItem("items", JSON.stringify(dades));
+    }
+  }
+
 }
 
 export { GuardarDades };

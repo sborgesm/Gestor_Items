@@ -31,7 +31,7 @@ class Taula extends ComponentHTML {
    * @returns {String} l'HTML de la taula
    */
   static createTableHTML(capcaleres, dada) {
-    let taulaHTML = "<table><thead><tr>";
+    let taulaHTML = '<table><thead><tr>';
 
     // Afegir capçaleres
     capcaleres.forEach((capcalera) => {

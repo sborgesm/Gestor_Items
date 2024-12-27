@@ -2,7 +2,10 @@ import { Taula } from "./modules/taula.js";
 import { Input } from "./modules/input.js";
 import { Boto } from "./modules/boto.js";
 import { Titol } from "./modules/Titol.js";
+import { DivComponent } from "./modules/div.js";
 
+let nouDiv = new DivComponent('', 'gran', 'botons_inserir');
+let divTaula = new DivComponent('', 'gran', 'dades');
     // Crear una instancia de Titol 
     const titolEntrada = new Titol('Taula d\'items', 'h1');  
 
@@ -18,14 +21,15 @@ let capcaleres = ['Nom item', 'Descripció','Data creacio', 'Data modificacio', 
 let taula = new Taula(capcaleres, []);
 taula.carregarDades(taula);
 
+nouDiv.afegirFill(botoAfegir, inputCerca, botoCerca);
+divTaula.afegirFill(taula);
+
 // Esperar que el DOM estigui llest i renderitzar
 document.addEventListener("DOMContentLoaded", () => {
-    let contenedor = document.getElementById("dades");
+    let contenedor = document.getElementById("divs");
     titolEntrada.append(contenedor);
-    botoAfegir.append(contenedor);
-    inputCerca.append(contenedor);
-    botoCerca.append(contenedor);
-    taula.append(contenedor);
+    nouDiv.append(contenedor);
+    divTaula.append(contenedor);
 
     contenedor.addEventListener("click", (event) => { 
       if (event.target.id && event.target.id.startsWith("boto-eliminar")) {

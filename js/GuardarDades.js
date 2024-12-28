@@ -41,20 +41,15 @@ class GuardarDades {
   modificarItem(nom, novesDades) {
     // Obtenir dades del LocalStorage
     const dades = JSON.parse(localStorage.getItem("items")) || [];
-    console.log("Dades actuals al LocalStorage:", dades);
-
     // Buscar l'ítem a actualitzar
     const index = dades.findIndex((item) => item.nom === nom);
-    console.log("Índex trobat:", index);
 
     if (index !== -1) {
         // Actualitzar les dades de l'ítem
         dades[index] = { ...dades[index], ...novesDades };
-        console.log("Noves dades de l'ítem:", dades[index]);
 
         // Guardar les dades actualitzades al LocalStorage
         localStorage.setItem("items", JSON.stringify(dades));
-        alert(`Item "${nom}" actualitzat correctament!`);
     } else {
         alert(`No s'ha trobat cap ítem amb el nom "${nom}".`);
     }

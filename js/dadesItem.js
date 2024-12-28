@@ -7,27 +7,22 @@ import { Imatge } from "./modules/Imatge.js";
 import { Targeta } from "./modules/targeta.js";
 import { SelectComponent } from "./modules/select.js";
 import { GuardarDades } from "./GuardarDades.js";
-
-// Crear una instancia de Titol 
-let titolEntrada = new Titol('Dades de l\'item', 'h1');  
+ 
 
 // Crear instancia del DivComponent "nouDiv"
 let nouDiv = new DivComponent('', 'gran', 'dadesaOmplir');
 const urlParams = new URLSearchParams(window.location.search); 
 const nom = urlParams.get('nom');
 const descripcio = urlParams.get('descripcio');
-const imatge = urlParams.get('imatge'); 
-let titolNom = new Titol("Nom de l'item: ", 'h4');
-let inputNom = new Input('inputNomVisual','text', '', nom);
+const imatge = urlParams.get('imatge');
+let titolEntrada = new Titol('Dades de '+nom, 'h1'); 
 let titolDescripcio = new Titol("Descripcio de l'item: ", 'h4');
-let inputDescripcio = new Input('inputNomVisual','text', '', descripcio);
+let inputDescripcio = new Input('descripcio','text', descripcio, ' ');
 let titolImatge = new Titol("Url de la imatge: ", 'h4');
-let inputUrl = new Input('InputUrlVisual','text', '', imatge);
+let inputUrl = new Input('url','text', imatge, ' ');
 
 // Crear instancia de Targeta
 let targeta1 = new Targeta('opcions', 'Guarda els canvis', '', "botoTriarItem");
-targeta1.afegirFill(titolNom);
-targeta1.afegirFill(inputNom);
 targeta1.afegirFill(titolDescripcio);
 targeta1.afegirFill(inputDescripcio);
 targeta1.afegirFill(titolImatge);
@@ -44,19 +39,31 @@ document.addEventListener("DOMContentLoaded", () => {
 
     targeta1.boto.addEventListener('click', () => {
         let imatgeAfegida = new Imatge(inputUrl.obtenirValor(), " ", "50", "50", " ");
-        let nomAntic = inputNom.obtenirValor();
         let dadesRecollides = new GuardarDades();
-        dadesRecollides.modificarItem(nomAntic, {
-            nom:inputNom.obtenirValor(),
-            descripcio: inputDescripcio.obtenirValor(), 
-            imatge:imatgeAfegida.html
-        });
-        alert(`L'item ${nomAntic} modificat correctament`);
-        inputNom.buidarInput();
-        inputDescripcio.buidarInput();
-        inputUrl.buidarInput();
-        
+        const dataActual = new Date();
+        let comprovarImatge = document.getElementById('url').value;
+        if (comprovarImatge === "") {
+            dadesRecollides.modificarItem(nom, {
+                descripcio: document.getElementById('descripcio').value,
+                dataModificacio: dadesRecollides.formatejarData(dataActual),
+            });
+        } else {
+            dadesRecollides.modificarItem(nom, {
+                descripcio: document.getElementById('descripcio').value,
+                dataModificacio: dadesRecollides.formatejarData(dataActual),
+                imatge:imatgeAfegida.html
+            });
+        }  
     });
+
+    document.getElementById("descripcio").addEventListener("focus", function() {
+        this.value = "";
+    });
+
+    document.getElementById("url").addEventListener("focus", function() {
+        this.value = "";
+    });
+    
 
 });
 

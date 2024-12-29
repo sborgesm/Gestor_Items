@@ -47,12 +47,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 descripcio: document.getElementById('descripcio').value,
                 dataModificacio: dadesRecollides.formatejarData(dataActual),
             });
+            alert("S'ha modificat l'item correctament");
         } else {
             dadesRecollides.modificarItem(nom, {
                 descripcio: document.getElementById('descripcio').value,
                 dataModificacio: dadesRecollides.formatejarData(dataActual),
                 imatge:imatgeAfegida.html
             });
+            alert("S'ha modificat l'item correctament");
         }  
     });
 

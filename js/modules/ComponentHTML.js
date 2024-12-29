@@ -34,6 +34,7 @@ class ComponentHTML {
   append(element) {
     element.innerHTML += this.render();
   }
+
 }
 
 export { ComponentHTML };

@@ -23,6 +23,10 @@ class DivComponent extends ComponentHTML {
     afegirFill(...fillComponent) {
         this.fills.push(...fillComponent);
     }
+
+    buidarFills() {
+        this.fills = [];
+    }
 }
 
 export { DivComponent };

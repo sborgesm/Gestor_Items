@@ -56,22 +56,24 @@ class Taula extends ComponentHTML {
    * Metode per carregar les dades de l'objecte localStorage i mostrar-les a la taula.
    * @param {object} taula - la taula on es mostraran les dades
    */
-  carregarDades(taula) {
-    const dades = JSON.parse(localStorage.getItem("items") || "[]"); // Obtenir les dades de l'objecte localStorage
-    let imatgeEliminar = new Imatge("./img/brossa.png", " ", "50", "50", "boto-eliminar");
-      const files = dades.map((dada) => { // Crear un array amb les dades de cada item
-        return [
-          dada.nom,
-          dada.descripcio,
-          dada.dataCreacio || "-",
-          dada.dataModificacio || "-",
-          dada.imatge || "-",
-          imatgeEliminar.html
-        ];
-      });
+  carregarDades(dadesFiltrades = null) {
+  const dades = dadesFiltrades || JSON.parse(localStorage.getItem("items") || "[]");
+  
+  let imatgeEliminar = new Imatge("./img/brossa.png", " ", "50", "50", "boto-eliminar");
+  
+  // Crear les files amb les dades
+  const files = dades.map((dada) => [
+    dada.nom,
+    dada.descripcio,
+    dada.dataCreacio || "-",
+    dada.dataModificacio || "-",
+    dada.imatge || "-",
+    imatgeEliminar.html,
+  ]);
 
-      taula.posarDada(files); // Posar les dades a la taula
-    }
+  this.posarDada(files); // Actualitzar la taula amb les dades (ordenades)
+}
+
 
   /**
    * Metode per eliminar un item de la taula.

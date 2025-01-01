@@ -77,5 +77,9 @@ td{
     display: flex;
     justify-content:space-between;
     align-items: center; /* Centra los elementos verticalmente */
-    flex-direction:row; /* Cambia la dirección de los elementos */
+    flex-direction:column; /* Cambia la dirección de los elementos */
+}
+
+#boto-10mes{
+    margin-top: 10px;
 }

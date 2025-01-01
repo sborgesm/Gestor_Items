@@ -12,6 +12,7 @@ const titolEntrada = new Titol('Taula d\'items', 'h1');
 // Crear instàncies de Boto 
 const botoAfegir = new Boto("Afegir Item", "boto-afegir");
 const botoCerca = new Boto("Cerca", "boto-cerca");
+const boto10mes = new Boto("10 més", "boto-10mes");
 
 // Crear una instància de Input 
 const inputCerca = new Input('InputCerca', 'text', '', "Introdueix el nom d'item");
@@ -23,6 +24,7 @@ taula.carregarDades();
 
 nouDiv.afegirFill(botoAfegir, inputCerca, botoCerca);
 divTaula.afegirFill(taula);
+divTaula.afegirFill(boto10mes);
 
 // Esperar que el DOM estigui llest i renderitzar
 document.addEventListener("DOMContentLoaded", () => {

@@ -57,8 +57,10 @@ class Taula extends ComponentHTML {
    * @param {object} taula - la taula on es mostraran les dades
    */
   carregarDades(dadesFiltrades = null) {
-  const dades = dadesFiltrades || JSON.parse(localStorage.getItem("items") || "[]");
-  
+  let dades = dadesFiltrades || JSON.parse(localStorage.getItem("items") || "[]");
+  if (dades.length > 10) {
+    dades = dades.slice(0, 10); // Mostrar només els 10 primers items
+  }
   let imatgeEliminar = new Imatge("./img/brossa.png", " ", "50", "50", "boto-eliminar");
   
   // Crear les files amb les dades

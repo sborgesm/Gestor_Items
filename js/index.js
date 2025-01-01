@@ -10,9 +10,10 @@ let divTaula = new DivComponent('', 'gran', 'dades');
 const titolEntrada = new Titol('Taula d\'items', 'h1');
 
 // Crear instàncies de Boto 
-const botoAfegir = new Boto("Afegir Item", "boto-afegir");
-const botoCerca = new Boto("Cerca", "boto-cerca");
-const boto10mes = new Boto("10 més", "boto-10mes");
+const botoAfegir = new Boto("Clica per afegir Item", "boto-afegir");
+const botoCerca = new Boto("Cerca l'item", "boto-cerca");
+const boto10mes = new Boto("Clica per mostrar 10 resultats més", "boto-10mes");
+const botoMostrarItems = new Boto("Torna a mostrar els primers items", "boto-mostrar-items");
 
 // Crear una instància de Input 
 const inputCerca = new Input('InputCerca', 'text', '', "Introdueix el nom d'item");
@@ -22,9 +23,8 @@ let capcaleres = ['Nom item', 'Descripció', 'Data creacio', 'Data modificacio',
 let taula = new Taula(capcaleres, []);
 taula.carregarDades();
 
-nouDiv.afegirFill(botoAfegir, inputCerca, botoCerca);
+nouDiv.afegirFill(botoAfegir, inputCerca, botoCerca, boto10mes, botoMostrarItems);
 divTaula.afegirFill(taula);
-divTaula.afegirFill(boto10mes);
 
 // Esperar que el DOM estigui llest i renderitzar
 document.addEventListener("DOMContentLoaded", () => {
@@ -64,20 +64,20 @@ document.addEventListener("DOMContentLoaded", () => {
     botoAfegir.addEventListener("click", () => {
         window.location.href = "./views/creacioItem.html";
     });
-    
+
     botoCerca.addEventListener("click", () => {
         const text = document.getElementById("InputCerca").value.toLowerCase();
-    
+
         const dades = JSON.parse(localStorage.getItem("items")) || [];
-    
+
         const itemsExactMatch = [];
         const itemsStartsWith = [];
         const itemsContains = new Set(); // Using a Set to avoid duplicates
-    
+
         dades.forEach(item => {
             const nom = item.nom ? item.nom.toLowerCase() : "";
             const descripcio = item.descripcio ? item.descripcio.toLowerCase() : "";
-    
+
             if (nom === text) {
                 itemsExactMatch.push(item);
                 alert("S'ha trobat l'item");
@@ -89,13 +89,44 @@ document.addEventListener("DOMContentLoaded", () => {
                 alert("S'ha trobat item que té el text a dins del nom o la descripció");
             }
         });
-    
+
         const itemsFiltrats = [...itemsExactMatch, ...itemsStartsWith, ...itemsContains];
-    
+
         taula.carregarDades(itemsFiltrats); // Actualitzar la taula amb els items filtrats
         taula.update(document.getElementById("dades")); // Actualitzar la taula a la vista
     });
-    
-    
+
+    let vegadesClicat = 0; // Definir fora del manejador per mantenir el valor
+
+    boto10mes.addEventListener("click", () => {
+        let dades = JSON.parse(localStorage.getItem("items")) || [];
+        vegadesClicat++; // Incrementar el comptador de clics
+
+        if (dades.length === 0) {
+            alert("No hi ha més items per carregar");
+            return;
+        }
+
+        const inici = vegadesClicat * 10;
+        const fi = inici + 10;
+        const dadesPerMostrar = dades.slice(inici, fi);
+
+        if (dadesPerMostrar.length === 0) {
+            alert("No hi ha més items per carregar");
+            return;
+        }
+
+        taula.carregarDades(dadesPerMostrar); // Actualitzar la taula amb els nous items
+        taula.update(document.getElementById("dades")); // Actualitzar la taula a la vista
+
+        alert(`S'han carregat ${dadesPerMostrar.length} items més`);
+    });
+
+    botoMostrarItems.addEventListener("click", () => {
+        let dades = JSON.parse(localStorage.getItem("items")) || [];
+        taula.carregarDades(dades); // Carregar els 10 primers items
+        taula.update(document.getElementById("dades")); // Actualitzar la taula a la vista
+        alert("S'han tornat a mostrar els primers 10 items");
+    });
 });
 

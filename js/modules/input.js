@@ -12,40 +12,14 @@ class Input extends ComponentHTML {
    * @param {string} valor - Valor de l'input
    * @param {string} placeholder - Placeholder de l'input
    */
-  constructor(id = "", tipus = "text", valor = "", placeholder = "") {
-    super();
-    this.id = id;
-    this.tipus = tipus;
-    this.valor = valor;
-    this.placeholder = placeholder;
+  constructor(id = "", tipus = "text", valor = "", placeholder = "") {// Constructor amb els atributs de l'input
+    super();// Cridem al constructor de la classe pare
+    this.id = id;// Atribut que conté l'id de l'input
+    this.tipus = tipus;// Atribut que conté el tipus de l'input
+    this.valor = valor;// Atribut que conté el valor de l'input
+    this.placeholder = placeholder;// Atribut que conté el text introductori de l'input
     this.html = `<input id="${id}" type="${tipus}" value="${valor}" placeholder="${placeholder}">`;
-  }
-
-  /**
-   * Metode per canviar el tipus de l'input
-   * @param {string} nouTipus - Nou tipus de l'input
-   */
-  canviarTipus(nouTipus) {
-    this.tipus = nouTipus;
-    this.html = `<input id="${this.id}" type="${this.tipus}" value="${this.valor}" placeholder="${this.placeholder}">`;
-  }
-
-  /**
-   * Metode per canviar el valor de l'input
-   * @param {string} nouValor - Nou valor de l'input
-   */
-  canviarValor(nouValor) {
-    this.valor = nouValor;
-    this.html = `<input id="${this.id}" type="${this.tipus}" value="${this.valor}" placeholder="${this.placeholder}">`;
-  }
-
-  /**
-   * Metode per canviar el placeholder de l'input
-   * @param {string} nouPlaceholder - Nou placeholder de l'input
-   */
-  canviarPlaceholder(nouPlaceholder) {
-    this.placeholder = nouPlaceholder;
-    this.html = `<input type="${this.tipus}" value="${this.valor}" placeholder="${this.placeholder}">`;
+    // Generem l'HTML de l'input amb els atributs passats
   }
 
   /**
@@ -54,10 +28,14 @@ class Input extends ComponentHTML {
    */
   obtenirValor()  {
     return document.getElementById(this.id).value;
+    // Obtenim el valor de l'input pel seu id amb el mètode value
   }
 
+
+  // Funcio per buidar el valor de l'input
   buidarInput() {
     document.getElementById(this.id).value = "";
+    // Esborrem el valor de l'input pel seu id assignant-li un string buit
   }
 }
 

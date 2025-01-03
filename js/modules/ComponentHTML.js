@@ -8,7 +8,7 @@ class ComponentHTML {
    * @param {string} html - El contingut HTML del component
    */
   constructor(html) {
-    this.html = html;
+    this.html = html;// Atribut que conté l'HTML del component
   }
 
   /**

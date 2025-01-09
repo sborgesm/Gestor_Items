@@ -78,3 +78,20 @@ select{
 option{
     text-align: center;
 }
+
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+#boto-tornar {
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+#boto-tornar:hover {
+    transform: scale(1.1);
+}

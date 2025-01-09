@@ -9,6 +9,11 @@ import { GuardarDades } from "./GuardarDades.js";
 // Crear una instancia de Titol 
 let titolEntrada = new Titol('Creacio d\'items', 'h1');
 
+let botoTornar = new Imatge('../img/fletxa.png'," ", "50", "50", "boto-tornar");
+
+let divHeader = new DivComponent('', 'header-container','header');
+divHeader.afegirFill(titolEntrada, botoTornar);
+
 // Crear instancia del DivComponent "nouDiv"
 let nouDiv = new DivComponent('', 'gran', 'dadesaOmplir');// Parametres: contingut, classe i id
 
@@ -27,79 +32,70 @@ nouDiv.afegirFill(targeta1);
 
 // Esperem a que el document estigui carregat per afegir els elements al DOM
 document.addEventListener("DOMContentLoaded", () => {
-    let contenedor = document.getElementById("dades");// Fiquem a la variable contenedor l'element amb id "dades"
-    titolEntrada.append(contenedor);// Renderitzem el titol
-    nouDiv.append(contenedor); // Renderitzem el div
+    let contenedor = document.getElementById("dades");
+    divHeader.append(contenedor);
+    nouDiv.append(contenedor);
 
-    targeta1.boto.addEventListener('click', () => {// Afegim la funcionalitat al boto de la targeta
-        let nomSeleccionat = select1.obtenirSeleccio(); // Afegim a la variable el valor seleccionat del select
-        let dadesRecollides = new GuardarDades();// Creem una instancia de la classe GuardarDades
-
-        if (nomSeleccionat === "Simple") {// Si el valor seleccionat es "Simple"
-            let inputNom = new Input('InputNomSimple', 'text', '', 'Introdueix el nom de l\'item');
-            // Creem una instancia de Input amb els parametres: id, tipus, valor i placeholder
-            let inputDescripcio = new Input('InputDescripcioSimple', 'text', '', 'Introdueix la descripcio de l\'item');
-            // Input per la descripcio
-            let targeta2 = new Targeta('opcions', 'Crea', 'Dades de l\'item simple', "botoCrearItem");
-            // Creem una instancia de Targeta amb els parametres: classe del div, text del boto, text del titol i id del boto
-
-            targeta2.afegirFill(inputNom, inputDescripcio);// Afegim els inputs com a fills de la targeta
-            targeta2.update(document.getElementById("dadesaOmplir"));// Tornem a renderitzar la targeta amb els fills
-
-            document.getElementById("botoCrearItem").addEventListener('click', () => {
-                // Afegim la funcionalitat al boto de la targeta simple
-                let nom = document.getElementById('InputNomSimple').value;// Guardem el valor del input amb id "InputNomSimple"
-                let dades = JSON.parse(localStorage.getItem("items")) || []; // Guardem les dades del local storage a la variable dades
-                let nomJaExisteix = dades.some(item => item.nom === nom);// Comprovem si ja existeix un item amb el mateix nom amb la funcio some
-                if (nomJaExisteix) {// Si ja existeix un item amb el mateix nom
-                    alert(`Ja existeix un item amb el nom "${nom}".`);// Mostrem un alert
-                    inputNom.buidarInput();// Buidem el input
-                    return;
-                } else {
-                    dadesRecollides.guardarItem(inputNom.obtenirValor(), inputDescripcio.obtenirValor());
-                    // Guardem les dades amb la funcio guardarItem de la instancia de GuardarDades
-                    alert(`L'item simple ${inputNom.obtenirValor()} creat correctament`);
-                    // Mostrem un alert amb el nom de l'item creat
-                    inputNom.buidarInput();
-                    inputDescripcio.buidarInput();// Buidem els inputs
-                }
-            });
-
-        } else {// Si el valor seleccionat es "Visual"
-            let inputNom = new Input('inputNomVisual', 'text', '', 'Introdueix el nom de l\'item');
-            let inputDescripcio = new Input('InputDescripcioVisual', 'text', '', 'Introdueix la descripcio de l\'item');
-            let inputUrl = new Input('InputUrlVisual', 'text', '', 'Introdueix la url de la imatge');
-            // Creem els inputs mateixos però afegim un per la url de la imatge
-            let targeta2 = new Targeta('opcions', 'Crea', 'Dades de l\'item visual', "botoCrearItem");
-
-            targeta2.afegirFill(inputNom, inputDescripcio, inputUrl);
-            targeta2.update(document.getElementById("dadesaOmplir"));
-
-            document.getElementById("botoCrearItem").addEventListener('click', () => {
-                // Afegim la funcionalitat al boto de la targeta visual
-                let nom = document.getElementById('inputNomVisual').value;
-                let dades = JSON.parse(localStorage.getItem("items")) || [];
-                let nomJaExisteix = dades.some(item => item.nom === nom);
-                if (nomJaExisteix) {
-                    alert(`Ja existeix un item amb el nom "${nom}".`);
-                    inputNom.buidarInput();
-                    return;
-                } else {
-                    let inserirImatge = new Imatge(inputUrl.obtenirValor(), 'imatge', '50', '50');
-                    // Creem una instancia de la classe Imatge amb els parametres: url, text alternatiu, amplada i alcada
-                    dadesRecollides.guardarItem(inputNom.obtenirValor(), inputDescripcio.obtenirValor(), inserirImatge.html);
-                    // Guardem les dades contingut dels inputs i la url de la imatge
-                    alert(`L'item visual ${inputNom.obtenirValor()} creat correctament`); // Mostrem un alert amb el nom de l'item creat
-                    inputNom.buidarInput();
-                    inputDescripcio.buidarInput();
-                    inputUrl.buidarInput();// Buidem els inputs
-                }
-
-            });
-        }
-
+    // Event per tornar enrere amb la fletxa
+    document.getElementById("boto-tornar").addEventListener("click", () => {
+        window.history.back(); // Quan es clica, torna enrere
     });
 
+    targeta1.boto.addEventListener('click', () => { // Quan es clica el boto
+        let nomSeleccionat = select1.obtenirSeleccio(); // Obtenim l'opcio seleccionada
+        let dadesRecollides = new GuardarDades(); // Creem una instancia de la classe GuardarDades
+
+        if (nomSeleccionat === "Simple") { // Si l'opcio seleccionada es "Simple"
+            let inputNom = new Input('InputNomSimple', 'text', '', 'Introdueix el nom de l\'item'); // Creem un input on guardem el nom
+            let inputDescripcio = new Input('InputDescripcioSimple', 'text', '', 'Introdueix la descripcio de l\'item'); // Creem un input on guardem la descripció
+            let targeta2 = new Targeta('opcions', 'Crea', 'Dades de l\'item simple', "botoCrearItem"); // Creem una targeta
+
+            targeta2.afegirFill(inputNom, inputDescripcio); // Afegim els fills a la targeta
+            targeta2.update(document.getElementById("dadesaOmplir")); // Actualitzem la targeta
+
+            document.getElementById("botoCrearItem").addEventListener('click', () => { // Event per crear l'item
+                let nom = document.getElementById('InputNomSimple').value; // Obtenim el nom
+                let dades = JSON.parse(localStorage.getItem("items")) || []; // Obtenim els items
+                let nomJaExisteix = dades.some(item => item.nom === nom); // Comprovem si el nom ja existeix
+                if (nomJaExisteix) { // Si ja existeix
+                    alert(`Ja existeix un item amb el nom "${nom}".`); // Mostrem un missatge
+                    inputNom.buidarInput(); // Buidem l'input
+                    return;
+                } else { // Si no existeix
+                    dadesRecollides.guardarItem(inputNom.obtenirValor(), inputDescripcio.obtenirValor()); // Guardem l'item
+                    alert(`L'item simple ${inputNom.obtenirValor()} creat correctament`); // Mostrem un missatge
+                    inputNom.buidarInput(); // Buidem l'input
+                    inputDescripcio.buidarInput(); // Buidem l'input
+                }
+            });
+        } else { // Si l'opcio seleccionada es "Visual"
+            let inputNom = new Input('inputNomVisual', 'text', '', 'Introdueix el nom de l\'item'); // Creem un input on guardem el nom
+            let inputDescripcio = new Input('InputDescripcioVisual', 'text', '', 'Introdueix la descripcio de l\'item'); // Creem un input on guardem la descripció
+            let inputUrl = new Input('InputUrlVisual', 'text', '', 'Introdueix la url de la imatge'); // Creem un input on guardem la url
+            let targeta2 = new Targeta('opcions', 'Crea', 'Dades de l\'item visual', "botoCrearItem"); // Creem una targeta
+
+            targeta2.afegirFill(inputNom, inputDescripcio, inputUrl); // Afegim els fills a la targeta
+            targeta2.update(document.getElementById("dadesaOmplir")); // Actualitzem la targeta
+
+            document.getElementById("botoCrearItem").addEventListener('click', () => { // Event per crear l'item
+                let nom = document.getElementById('inputNomVisual').value; // Obtenim el nom
+                let dades = JSON.parse(localStorage.getItem("items")) || []; // Obtenim els items
+                let nomJaExisteix = dades.some(item => item.nom === nom); // Comprovem si el nom ja existeix
+                if (nomJaExisteix) { // Si ja existeix
+                    alert(`Ja existeix un item amb el nom "${nom}".`); // Mostrem un missatge
+                    inputNom.buidarInput(); // Buidem l'input
+                    return;
+                } else { // Si no existeix
+                    let inserirImatge = new Imatge(inputUrl.obtenirValor(), 'imatge', '50', '50'); // Creem una imatge
+                    dadesRecollides.guardarItem(inputNom.obtenirValor(), inputDescripcio.obtenirValor(), inserirImatge.html); // Guardem l'item
+                    alert(`L'item visual ${inputNom.obtenirValor()} creat correctament`); // Mostrem un missatge
+                    inputNom.buidarInput(); // Buidem l'input
+                    inputDescripcio.buidarInput(); // Buidem l'input
+                    inputUrl.buidarInput(); // Buidem l'input
+                }
+            });
+        }
+    });
 });
 
 
